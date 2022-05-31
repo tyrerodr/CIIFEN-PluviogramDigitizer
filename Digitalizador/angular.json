@@ -97,7 +97,10 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/app/jquery-1.9.1.min.js",
+              "src/app/nicepage.js"
+            ]
           }
         }
       }

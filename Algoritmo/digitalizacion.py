@@ -72,14 +72,13 @@ imgarray= np.array(img)
 
 img_blue=identify_pluviogram_by_color(imgarray,limInferior,limSuperior)
 
-
 #img_rgb = cv2.cvtColor(numbers_stripe(imgarray), cv2.COLOR_BGR2RGB)
 
 img_rgb= numbers_stripe(imgarray)
 
 #print(pytesseract.image_to_data(img_rgb, lang='eng'))
 
-img=resize(img_rgb,50)
+img=resize(img_blue,50)
 hImg, wImg, _ = img.shape
 
 boxes = pytesseract.image_to_boxes(img ,lang='eng', config='--psm 11 --oem 3 -c tessedit_char_whitelist=0123456789')
