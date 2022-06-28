@@ -1,7 +1,9 @@
 // Obtener referencia al input y a la imagen
-const $seleccionArchivos = document.querySelector("#seleccionArchivos"),
+  $seleccionArchivos = document.querySelector("#seleccionArchivos"),
   $imagenPrevisualizacion = document.querySelector("#imagenPrevisualizacion"),
   $btnDigitalizar = document.querySelector("#btn-digitalizador");
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "image/png");
 
 // Escuchar cuando cambie
 $seleccionArchivos.addEventListener("change", () => {
@@ -22,5 +24,36 @@ $seleccionArchivos.addEventListener("change", () => {
 
 //escuchar cuando click
 $btnDigitalizar.addEventListener("click", () => {
+  var file = primerArchivo;
+  codificar(file)
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: file,
+    redirect: 'follow'
+  };
+
+  fetch("127.0.0.1:3000/digitalizar?modelo=primero", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
   location.reload();
 });
+
+
+function codificar(im){ 
+  var i=new Image(); 
+  i.onload=function(){ 
+      var canvas=document.createElement('canvas'), 
+      ctx=canvas.getContext('2d'); 
+      canvas.width=300; 
+      canvas.height=400; 
+      ctx.drawImage(im,0,0,300,400); 
+  console.log(canvas.toDataURL().split('base64,')[1]); 
+       
+  } 
+  i.src=im; 
+} 
+
+  
+
