@@ -17,4 +17,9 @@ export class IndexComponent implements OnInit {
   ngOnInit() {
     this.AnimationBarOption = this._chartsService.getAnimationBarOption();
   }
+
+
+  
+
 }
+

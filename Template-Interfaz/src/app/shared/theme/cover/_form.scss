@@ -62,7 +62,7 @@ input.form-control {
     background: $border-color;
     @include transition(all 1s);
     &:focus {
-        border-bottom: 1px solid $primary;
+        border-bottom: 1px solid $blueciifen;
     }
 }
 
@@ -85,7 +85,7 @@ input.table-form-control {
     color: $fonts-color;
     text-align: center;
     &:focus {
-        border: 1px solid $primary;
+        border: 1px solid $blueciifen;
     }
 }
 
@@ -98,7 +98,7 @@ textarea.form-control {
     border-radius: 0;
     @include transition(border 1s);
     &:focus {
-        border: 1px solid $primary;
+        border: 1px solid $blueciifen;
     }
 }
 
@@ -143,7 +143,7 @@ select.form-control[multiple] {
 
 input.with-primary-addon {
     &:focus {
-        border-bottom: 1px solid $primary;
+        border-bottom: 1px solid $blueciifen;
     }
 }
 
@@ -186,7 +186,7 @@ input.with-info-addon {
 }
 
 .input-group-addon-primary {
-    background: $primary;
+    background: $blueciifen;
 }
 
 .input-group-addon-success {
@@ -262,12 +262,12 @@ checkbox && radio
 
 .checkbox-primary+.check-label,
 .checkbox-primary+.radio-label {
-    border: 1px solid $primary;
+    border: 1px solid $blueciifen;
 }
 
 .checkbox-primary+.check-label:after,
 .checkbox-primary+.radio-label:after {
-    background-color: $primary;
+    background-color: $blueciifen;
 }
 
 .checkbox-success+.check-label,
@@ -316,7 +316,7 @@ checkbox && radio
 }
 
 .label-primary {
-    @extend .bg-primary;
+    @extend .bg-default;
 }
 
 .label-warning {

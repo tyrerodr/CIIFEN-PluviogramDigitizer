@@ -1,5 +1,5 @@
 export let MENU_ITEM = [
-    {
+    /*{
         path: 'index',
         title: 'Inicio',
         icon: 'dashboard'
@@ -8,18 +8,18 @@ export let MENU_ITEM = [
         path: 'editor',
         title: 'Pell Editor',
         icon: 'pencil'
-    },
+    },*/
     {
         path: 'digitalizador',
         title: 'Digitalizador',
         icon: 'pencil'
     },
     {
-        path: 'icon',
-        title: 'Icon',
-        icon: 'diamond'
+        path: 'database',
+        title: 'Base de Datos',
+        icon: 'table'
     },
-    {
+    /*{
         path: 'profile',
         title: 'User Profile',
         icon: 'user'
@@ -57,10 +57,10 @@ export let MENU_ITEM = [
                 path: 'progress-bar',
                 title: 'ProgressBar'
             },
-            /*  {
-                 path: 'loading',
-                 title: 'Loading'
-             }, */
+              //{
+            //     path: 'loading',
+        //         title: 'Loading'
+        //     }, 
         ]
     },
     {
@@ -132,5 +132,5 @@ export let MENU_ITEM = [
                 title: 'Menu Level2'
             }
         ]
-    },
+    }, */
 ];
