@@ -1,10 +1,10 @@
 import { Routes, RouterModule } from '@angular/router';
-import { IconComponent } from './icon.component';
+import { DatabaseComponent } from './database.component';
 
 const childRoutes: Routes = [
     {
         path: '',
-        component: IconComponent
+        component: DatabaseComponent
     }
 ];
 
