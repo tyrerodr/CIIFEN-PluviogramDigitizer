@@ -6,6 +6,10 @@ import { routing } from './app.routing';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { CargarScriptsService } from './cargar-scripts.service';
+
+
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -16,6 +20,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   declarations: [
     AppComponent,
+  ],
+  providers: [
+    CargarScriptsService
   ],
   bootstrap: [AppComponent]
 })
