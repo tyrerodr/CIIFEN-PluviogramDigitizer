@@ -8,11 +8,12 @@ $sidebar-fonts-color:#fff;
 $card-bg:#fff;
 $card-border:#e4e3e3;
 $white:#fff;
+$blueciifen: #0f436b;
 $black:#000;
 $border-color:rgba($black, .1);
 $table-border-color:#e6e6e6;
 $fonts-color:#26253c;
-$primary:#fca400;
+$primary:#efc61e;
 $success:#16be9a;
 $danger:#fa5167;
 $warning:#ff7403;
@@ -22,7 +23,7 @@ body {
 }
 
 .bg-default {
-    @include linear-gradient(to top right, darken($card-bg, 40%), darken($card-bg, 30%));
+    @include linear-gradient(to top right, $sidebar-bg, $blueciifen);
 }
 
 .bg-primary {

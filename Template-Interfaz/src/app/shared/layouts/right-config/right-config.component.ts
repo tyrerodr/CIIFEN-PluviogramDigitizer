@@ -7,7 +7,8 @@ import { GlobalService } from '../../services/global.service';
   styleUrls: ['./right-config.component.scss']
 })
 export class RightConfigComponent implements OnInit {
-
+  userName: string = 'Tyrone';
+  userPost: string = 'FrontEnd';
   isConfigToggle: boolean = false;
   constructor(private _globalService: GlobalService) { }
 

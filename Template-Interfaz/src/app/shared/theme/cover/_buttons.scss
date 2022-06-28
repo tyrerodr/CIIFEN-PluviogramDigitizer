@@ -1,6 +1,6 @@
 .btn:focus,
 .btn:active:focus,
-.btn.active:focus,
+.btn.active:focus
 {
     outline: none;
 }
@@ -18,13 +18,19 @@
     text-decoration: underline;
 }
 
-.btn-default,
+.btn-default{
+    color: $white;
+    border-radius: 5px;
+    transition-duration: 0.4s;
+    background-color: $blueciifen;
+}
+
 .btn-default:disabled:hover,
 .btn-default:hover,
 .btn-default:active:focus,
 .btn-default:focus {
     color: $white;
-    @extend .bg-default;
+    background-color: $blueciifen
 }
 
 .btn-primary {

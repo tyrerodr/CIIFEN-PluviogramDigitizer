@@ -30,6 +30,6 @@ export class ContentTopComponent {
 
   returnHome() {
     //    this._globalService._isActived({ title: 'Dashboard' });
-    this._globalService.dataBusChanged('isActived', { title: 'Dashboard' });
+    this._globalService.dataBusChanged('isActived', { title: 'Inicio' });
   }
 }

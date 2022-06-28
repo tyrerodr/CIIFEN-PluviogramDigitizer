@@ -3,11 +3,12 @@
     height: auto;
     background: $card-bg;
     position: relative;
-    border: 1px solid $card-border;
-    border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.13);
+    border-radius: 12px;
     color: $fonts-color;
     margin-bottom: 24px; //@include box-shadow(-1px 2px 10px rgba($black, .1));
 }
+
 
 .card-block {
     display: block;

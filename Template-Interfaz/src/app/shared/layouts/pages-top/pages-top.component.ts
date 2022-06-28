@@ -7,14 +7,11 @@ import {GlobalService} from '../../services/global.service';
   styleUrls: ['./pages-top.component.scss'],
 })
 export class PagesTopComponent implements AfterViewInit {
-  avatarImgSrc: string = 'assets/images/avatar.jpg';
-  userName: string = 'Bknds';
+  logoImgSrc: string = '../../../../assets/images/logo-ciifen.png';
+  userName: string = 'tyrerodr';
   userPost: string = 'FrontEnd';
 
-
   sidebarToggle: boolean = true;
-  tip = {ring: true, email: true};
-
   constructor(private _globalService: GlobalService) {
   }
 
