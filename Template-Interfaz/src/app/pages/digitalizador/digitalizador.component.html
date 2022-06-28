@@ -1,0 +1,48 @@
+<card cardTitle="Digitalizador">
+    <form method="get" class="text-center" id = "form-digitalizador" action="">
+    <div class="row">
+      <div class="col-md-3">
+        <h4 class="text-left">Subir Pluviograma:</h4>
+        <input type="file" name="adjunto" id="seleccionArchivos" accept=".pdf,.jpg,.png" />
+      </div>
+      <div class="col-md-3">
+        <h4 class="text-left">Estación:</h4>
+        <select class="form-control">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+      </div>
+      <div class="col-md-3">
+        <h4 class="text-left">Fecha Pluviograma:</h4>
+        <select class="form-control">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+      </div>
+      <div class="col-md-3">
+        <h4 class="text-left">Modelo de Pluviograma:</h4>
+        <select class="form-control">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h4 class="text-left">Vista Previa Pluviograma a Digitalizar:</h4>
+            <img id="imagenPrevisualizacion">
+        </div>
+      </div>
+    <button type="submit" form="form-digitalizador" id="btn-digitalizador" class="btn-lg btn-default">Digitalizar</button>
+    </form>
+</card>
+  

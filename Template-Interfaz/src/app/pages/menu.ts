@@ -1,12 +1,17 @@
 export let MENU_ITEM = [
     {
         path: 'index',
-        title: 'Dashboard',
+        title: 'Inicio',
         icon: 'dashboard'
     },
     {
         path: 'editor',
         title: 'Pell Editor',
+        icon: 'pencil'
+    },
+    {
+        path: 'digitalizador',
+        title: 'Digitalizador',
         icon: 'pencil'
     },
     {

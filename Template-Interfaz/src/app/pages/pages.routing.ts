@@ -21,6 +21,7 @@ export const childRoutes: Routes = [
             { path: 'ui', loadChildren: './ui/ui.module#UIModule' },
             { path: 'table', loadChildren: './table/table.module#TableModule' },
             { path: 'menu-levels', loadChildren: './menu-levels/menu-levels.module#MenuLevelsModule' },
+            { path: 'digitalizador', loadChildren: './digitalizador/digitalizador.module#DigitalizadorModule' },
         ]
     }
 ];
