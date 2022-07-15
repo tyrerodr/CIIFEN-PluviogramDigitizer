@@ -4,7 +4,6 @@
   $btnDigitalizar = document.querySelector("#btn-digitalizador");
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "image/png");
-
 // Escuchar cuando cambie
 $seleccionArchivos.addEventListener("change", () => {
   // Los archivos seleccionados, pueden ser muchos o uno
@@ -24,7 +23,11 @@ $seleccionArchivos.addEventListener("change", () => {
 
 //escuchar cuando click
 $btnDigitalizar.addEventListener("click", () => {
-  var file = primerArchivo;
+  const archivos = $seleccionArchivos.files;
+  if (!archivos || !archivos.length){
+    return;
+  }
+  const file = archivos[0];
   codificar(file)
   var requestOptions = {
     method: 'POST',
