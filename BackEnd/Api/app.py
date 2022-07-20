@@ -1,12 +1,14 @@
 from flask import Flask,request
 from flask_mysqldb import MySQL
 import digitalizacion
+import json
+from datetime import time
 
 app = Flask(__name__)
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'ciifen'
+app.config['MYSQL_DB'] = 'prueba'
 mysql = MySQL(app)
 
 def timeDeltaToTime(td):

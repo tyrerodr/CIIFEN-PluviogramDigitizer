@@ -24,20 +24,14 @@ $seleccionArchivos.addEventListener("change", () => {
 
 //escuchar cuando click
 $btnDigitalizar.addEventListener("click", () => {
-  var file = primerArchivo;
-  codificar(file)
-  var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: file,
-    redirect: 'follow'
-  };
-
-  fetch("127.0.0.1:3000/digitalizar?modelo=primero", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-  location.reload();
+  const archivos = $seleccionArchivos.files;
+  const primerArchivo = archivos[0];
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "http://127.0.0.1:3000/digitalizar?model=1", true);
+  xhr.setRequestHeader('Content-Type', 'text/plain');
+  xhr.send(JSON.stringify({
+    value: primerArchivo
+  }));
 });
 
 
@@ -54,6 +48,3 @@ function codificar(im){
   } 
   i.src=im; 
 } 
-
-  
-
