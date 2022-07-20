@@ -29,18 +29,18 @@ $btnDigitalizar.addEventListener("click", () => {
   }
   const file = archivos[0];
   codificar(file)
-  var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: file,
-    redirect: 'follow'
-  };
+  // var requestOptions = {
+  //   method: 'POST',
+  //   headers: myHeaders,
+  //   body: file,
+  //   redirect: 'follow'
+  // };
 
-  fetch("127.0.0.1:3000/digitalizar?modelo=primero", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-  location.reload();
+  // fetch("127.0.0.1:3000/digitalizar?modelo=primero", requestOptions)
+  // .then(response => response.text())
+  // .then(result => console.log(result))
+  // .catch(error => console.log('error', error));
+  // location.reload();
 });
 
 
@@ -53,7 +53,6 @@ function codificar(im){
       canvas.height=400; 
       ctx.drawImage(im,0,0,300,400); 
   console.log(canvas.toDataURL().split('base64,')[1]); 
-       
   } 
   i.src=im; 
 } 
