@@ -5,21 +5,21 @@
         <table class="table table-bordered table-hover order-table">
           <thead>
             <tr>
-              <th>FIRSTNAME</th>
-              <th>LASTNAME</th>
-              <th>USERNAME</th>
-              <th>EMAIL</th>
-              <th>AGE</th>
+              <th>Código de Estación</th>
+              <th>Nombre</th>
+              <th>Ciudad</th>
+              <th>Provincia/Estado</th>
+              <th>País</th>
               <th>STATE</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let item of tableData | paginate: { id: 'pager', itemsPerPage: pageSize, currentPage: pageNumber};let index = index">
-              <td>{{item.firstName}}</td>
-              <td>{{item.lastName}}</td>
-              <td>{{item.username}}</td>
-              <td>{{item.email}}</td>
-              <td>{{item.age}}</td>
+              <td>{{item.codigo}}</td>
+              <td>{{item.name}}</td>
+              <td>{{item.ciudad}}</td>
+              <td>{{item.provincia}}</td>
+              <td>{{item.pais}}</td>
               <td>
                 <span class="label label-info">info</span>
               </td>
