@@ -14,8 +14,6 @@ mysql = MySQL(app)
 def timeDeltaToTime(td):
 	return time(td.seconds//3600,(td.seconds//60)%60,00)
 
-
-
 @app.route('/digitalizar', methods=['POST','GET'])
 def save_band():
 	if request.method == 'POST':
