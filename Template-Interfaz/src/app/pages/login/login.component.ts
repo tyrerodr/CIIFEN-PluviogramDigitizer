@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit_Login(user: string, password: string) {
     var correcto = true;
-    fetch('http://127.0.0.1:5000/login')
+    fetch('http://127.0.0.1:3000/login')
     .then(texto => texto.json())
     .then(datos => {
       if (user == "" && password == "") {

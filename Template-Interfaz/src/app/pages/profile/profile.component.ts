@@ -18,7 +18,8 @@ export class ProfileComponent implements OnInit {
         lastName: 'Otto',
         username: '@mdo',
         email: 'mdo@gmail.com',
-        age: '28'
+        age: '28',
+        estado: 'Activo'
     },
     {
         id: 2,
@@ -26,7 +27,8 @@ export class ProfileComponent implements OnInit {
         lastName: 'Thornton',
         username: '@fat',
         email: 'fat@yandex.ru',
-        age: '45'
+        age: '45',
+        estado: 'Activo'
     },
     {
         id: 3,
@@ -34,7 +36,8 @@ export class ProfileComponent implements OnInit {
         lastName: 'Bird',
         username: '@twitter',
         email: 'twitter@outlook.com',
-        age: '18'
+        age: '18',
+        estado: 'Activo'
     },
     {
         id: 4,
@@ -42,7 +45,8 @@ export class ProfileComponent implements OnInit {
         lastName: 'Snow',
         username: '@snow',
         email: 'snow@gmail.com',
-        age: '20'
+        age: '20',
+        estado: 'Activo'
     },
     {
         id: 5,
@@ -50,7 +54,8 @@ export class ProfileComponent implements OnInit {
         lastName: 'Sparrow',
         username: '@jack',
         email: 'jack@yandex.ru',
-        age: '30'
+        age: '30',
+        estado: 'Activo'
     },
     {
         id: 6,
@@ -58,7 +63,8 @@ export class ProfileComponent implements OnInit {
         lastName: 'Smith',
         username: '@ann',
         email: 'ann@gmail.com',
-        age: '21'
+        age: '21',
+        estado: 'Activo'
     },
     {
         id: 7,
@@ -66,7 +72,8 @@ export class ProfileComponent implements OnInit {
         lastName: 'Black',
         username: '@barbara',
         email: 'barbara@yandex.ru',
-        age: '43'
+        age: '43',
+        estado: 'Activo'
     },
     {
         id: 8,
@@ -74,7 +81,8 @@ export class ProfileComponent implements OnInit {
         lastName: 'Bagrat',
         username: '@sevan',
         email: 'sevan@outlook.com',
-        age: '13'
+        age: '13',
+        estado: 'Activo'
     },
     {
         id: 9,
@@ -82,7 +90,8 @@ export class ProfileComponent implements OnInit {
         lastName: 'Vardan',
         username: '@ruben',
         email: 'ruben@gmail.com',
-        age: '22'
+        age: '22',
+        estado: 'Activo'
     },
     {
         id: 10,
@@ -90,7 +99,8 @@ export class ProfileComponent implements OnInit {
         lastName: 'Sevan',
         username: '@karen',
         email: 'karen@yandex.ru',
-        age: '33'
+        age: '33',
+        estado: 'Activo'
     },
     {
         id: 11,
@@ -98,7 +108,8 @@ export class ProfileComponent implements OnInit {
         lastName: 'Otto',
         username: '@mark',
         email: 'mark@gmail.com',
-        age: '38'
+        age: '38',
+        estado: 'Activo'
     },
     {
         id: 12,
@@ -106,7 +117,8 @@ export class ProfileComponent implements OnInit {
         lastName: 'Thornton',
         username: '@jacob',
         email: 'jacob@yandex.ru',
-        age: '48'
+        age: '48',
+        estado: 'Activo'
     },
     {
         id: 13,
@@ -114,7 +126,8 @@ export class ProfileComponent implements OnInit {
         lastName: 'Hakob',
         username: '@haik',
         email: 'haik@outlook.com',
-        age: '48'
+        age: '48',
+        estado: 'Activo'
     },
     {
         id: 14,
@@ -122,7 +135,8 @@ export class ProfileComponent implements OnInit {
         lastName: 'Jirair',
         username: '@garegin',
         email: 'garegin@gmail.com',
-        age: '40'
+        age: '40',
+        estado: 'Activo'
     },
     {
         id: 15,
@@ -130,7 +144,8 @@ export class ProfileComponent implements OnInit {
         lastName: 'Bedros',
         username: '@krikor',
         email: 'krikor@yandex.ru',
-        age: '32'
+        age: '32',
+        estado: 'Activo'
     }
 ];
 constructor(private _CargarScripts:CargarScriptsService) 
