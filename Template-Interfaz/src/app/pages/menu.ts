@@ -19,11 +19,12 @@ export let MENU_ITEM = [
         title: 'Base de Datos',
         icon: 'table'
     },
-    /*{
-        path: 'profile',
-        title: 'User Profile',
+    {
+        path: 'admin',
+        title: 'Administrador',
         icon: 'user'
     },
+    /*
     {
         path: 'ui',
         title: 'UI Element',

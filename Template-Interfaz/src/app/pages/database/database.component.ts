@@ -14,123 +14,123 @@ export class DatabaseComponent implements OnInit {
   DATA = [
     {
         id: 1,
-        firstName: 'Mark',
-        lastName: 'Otto',
-        username: '@mdo',
-        email: 'mdo@gmail.com',
-        age: '28'
+        codigo: 'H0015',
+        name: 'Estación Chota',
+        ciudad: 'Valle del Chota',
+        provincia: 'Imbabura',
+        pais: 'Ecuador'
     },
     {
         id: 2,
-        firstName: 'Jacob',
-        lastName: 'Thornton',
-        username: '@fat',
-        email: 'fat@yandex.ru',
-        age: '45'
+        codigo: 'H0347',
+        name: 'Estación Quevedo',
+        ciudad: 'Quevedo',
+        provincia: 'Los Ríos',
+        pais: 'Ecuador'
     },
     {
         id: 3,
-        firstName: 'Larry',
-        lastName: 'Bird',
-        username: '@twitter',
-        email: 'twitter@outlook.com',
-        age: '18'
+        codigo: 'M0008',
+        name: 'Estación Puyo',
+        ciudad: 'Puyo',
+        provincia: 'Pastaza',
+        pais: 'Ecuador'
     },
     {
         id: 4,
-        firstName: 'John',
-        lastName: 'Snow',
-        username: '@snow',
-        email: 'snow@gmail.com',
-        age: '20'
+        codigo: 'M0485',
+        name: 'Estación Carlos Julio Arosemena Tola',
+        ciudad: 'Arosemena Tola',
+        provincia: 'Tena',
+        pais: 'Ecuador'
     },
     {
         id: 5,
-        firstName: 'Jack',
-        lastName: 'Sparrow',
-        username: '@jack',
-        email: 'jack@yandex.ru',
-        age: '30'
+        codigo: 'M1271',
+        name: 'Estación Guayaquil (Falcultad CCNN)',
+        ciudad: 'Guayaquil',
+        provincia: 'Guayas',
+        pais: 'Ecuador'
     },
     {
         id: 6,
-        firstName: 'Ann',
-        lastName: 'Smith',
-        username: '@ann',
-        email: 'ann@gmail.com',
-        age: '21'
+        codigo: 'M1207',
+        name: 'Estación Nobol',
+        ciudad: 'Nobol',
+        provincia: 'Guayas',
+        pais: 'Ecuador'
     },
     {
         id: 7,
-        firstName: 'Barbara',
-        lastName: 'Black',
-        username: '@barbara',
-        email: 'barbara@yandex.ru',
-        age: '43'
+		codigo: 'M1170',
+        name: 'Estación Santa Elena',
+        ciudad: 'Santa Elena',
+        provincia: 'Santa Elena',
+        pais: 'Ecuador'
     },
     {
         id: 8,
-        firstName: 'Sevan',
-        lastName: 'Bagrat',
-        username: '@sevan',
-        email: 'sevan@outlook.com',
-        age: '13'
+        codigo: 'M1036',
+        name: 'Estación Riobamba Politecnica',
+        ciudad: 'Riobamba',
+        provincia: 'Chimborazo',
+        pais: 'Ecuador'
     },
     {
         id: 9,
-        firstName: 'Ruben',
-        lastName: 'Vardan',
-        username: '@ruben',
-        email: 'ruben@gmail.com',
-        age: '22'
+        codigo: 'M0176',
+        name: 'Estación Naranjal',
+        ciudad: 'Naranjal',
+        provincia: 'Guayas',
+        pais: 'Ecuador'
     },
     {
         id: 10,
-        firstName: 'Karen',
-        lastName: 'Sevan',
-        username: '@karen',
-        email: 'karen@yandex.ru',
-        age: '33'
+        codigo: 'M5138',
+        name: 'Estación Jubal-INER',
+        ciudad: 'Juval',
+        provincia: 'Chimborazo',
+        pais: 'Ecuador'
     },
     {
         id: 11,
-        firstName: 'Mark',
-        lastName: 'Otto',
-        username: '@mark',
-        email: 'mark@gmail.com',
-        age: '38'
+		codigo: 'M1036',
+        name: 'Estación Riobamba Politecnica',
+        ciudad: 'Riobamba',
+        provincia: 'Chimborazo',
+        pais: 'Ecuador'
     },
     {
         id: 12,
-        firstName: 'Jacob',
-        lastName: 'Thornton',
-        username: '@jacob',
-        email: 'jacob@yandex.ru',
-        age: '48'
+        codigo: 'M1221',
+        name: 'Estación San Jose de Payamino',
+        ciudad: 'Loreto',
+        provincia: 'Orellana',
+        pais: 'Ecuador'
     },
     {
         id: 13,
-        firstName: 'Haik',
-        lastName: 'Hakob',
-        username: '@haik',
-        email: 'haik@outlook.com',
-        age: '48'
+		codigo: 'M1096',
+        name: 'Estación Guayaquil U. Estatal',
+        ciudad: 'Guayaquil',
+        provincia: 'Guayas',
+        pais: 'Ecuador'
     },
     {
         id: 14,
-        firstName: 'Garegin',
-        lastName: 'Jirair',
-        username: '@garegin',
-        email: 'garegin@gmail.com',
-        age: '40'
+        codigo: 'M0292',
+        name: 'Estación Machala Granja Sta.Ines',
+        ciudad: 'Machala',
+        provincia: 'El Oro',
+        pais: 'Ecuador'
     },
     {
         id: 15,
-        firstName: 'Krikor',
-        lastName: 'Bedros',
-        username: '@krikor',
-        email: 'krikor@yandex.ru',
-        age: '32'
+        codigo: 'M0031',
+        name: 'Estación Cañar',
+        ciudad: 'Cañar',
+        provincia: 'Cañar',
+        pais: 'Ecuador'
     }
 ];
   constructor(private _CargarScripts:CargarScriptsService) 

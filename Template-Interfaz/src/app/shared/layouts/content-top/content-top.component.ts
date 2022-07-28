@@ -1,16 +1,19 @@
 import { Component } from '@angular/core';
 import { GlobalService } from '../../services/global.service';
+import { loginGuardService } from '../../../pages/login.guard.service';
 
 @Component({
+  
   selector: 'content-top',
   templateUrl: './content-top.component.html',
   styleUrls: ['./content-top.component.scss']
 })
 export class ContentTopComponent {
+  
   routeTitle;
   constructor(public _globalService: GlobalService) {
     this.getRouteTitle();
-  }
+    }
 
   private getRouteTitle() {
     /* this._globalService.isActived$.subscribe(isActived => {
