@@ -24,20 +24,26 @@ $seleccionArchivos.addEventListener("change", () => {
 
 //escuchar cuando click
 $btnDigitalizar.addEventListener("click", () => {
-  var file = primerArchivo;
-  codificar(file)
-  var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: file,
-    redirect: 'follow'
-  };
+  const archivos = $seleccionArchivos.files;
+  const primerArchivo = archivos[0];
+  var data = primerArchivo;
 
-  fetch("127.0.0.1:3000/digitalizar?modelo=primero", requestOptions)
+ var myHeaders = new Headers();
+myHeaders.append("Content-Type", "image/png");
+
+var file = primerArchivo;
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: file,
+  redirect: 'follow'
+};
+
+fetch("http://127.0.0.1:5000/digitalizar", requestOptions)
   .then(response => response.text())
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
-  location.reload();
 });
 
 
