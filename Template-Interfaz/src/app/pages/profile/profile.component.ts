@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
     {
         id: 1,
         firstName: 'Mark',
-        lastName: 'Otto',
+        contrasena: 'Otto',
         username: '@mdo',
         email: 'mdo@gmail.com',
         age: '28',
@@ -24,7 +24,7 @@ export class ProfileComponent implements OnInit {
     {
         id: 2,
         firstName: 'Jacob',
-        lastName: 'Thornton',
+        contrasena: 'Thornton',
         username: '@fat',
         email: 'fat@yandex.ru',
         age: '45',
@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit {
     {
         id: 3,
         firstName: 'Larry',
-        lastName: 'Bird',
+        contrasena: 'Bird',
         username: '@twitter',
         email: 'twitter@outlook.com',
         age: '18',
@@ -42,7 +42,7 @@ export class ProfileComponent implements OnInit {
     {
         id: 4,
         firstName: 'John',
-        lastName: 'Snow',
+        contrasena: 'Snow',
         username: '@snow',
         email: 'snow@gmail.com',
         age: '20',
@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
     {
         id: 5,
         firstName: 'Jack',
-        lastName: 'Sparrow',
+        contrasena: 'Sparrow',
         username: '@jack',
         email: 'jack@yandex.ru',
         age: '30',
@@ -60,7 +60,7 @@ export class ProfileComponent implements OnInit {
     {
         id: 6,
         firstName: 'Ann',
-        lastName: 'Smith',
+        contrasena: 'Smith',
         username: '@ann',
         email: 'ann@gmail.com',
         age: '21',
@@ -69,7 +69,7 @@ export class ProfileComponent implements OnInit {
     {
         id: 7,
         firstName: 'Barbara',
-        lastName: 'Black',
+        contrasena: 'Black',
         username: '@barbara',
         email: 'barbara@yandex.ru',
         age: '43',
@@ -78,7 +78,7 @@ export class ProfileComponent implements OnInit {
     {
         id: 8,
         firstName: 'Sevan',
-        lastName: 'Bagrat',
+        contrasena: 'Bagrat',
         username: '@sevan',
         email: 'sevan@outlook.com',
         age: '13',
@@ -87,7 +87,7 @@ export class ProfileComponent implements OnInit {
     {
         id: 9,
         firstName: 'Ruben',
-        lastName: 'Vardan',
+        contrasena: 'Vardan',
         username: '@ruben',
         email: 'ruben@gmail.com',
         age: '22',
@@ -96,7 +96,7 @@ export class ProfileComponent implements OnInit {
     {
         id: 10,
         firstName: 'Karen',
-        lastName: 'Sevan',
+        contrasena: 'Sevan',
         username: '@karen',
         email: 'karen@yandex.ru',
         age: '33',
@@ -105,7 +105,7 @@ export class ProfileComponent implements OnInit {
     {
         id: 11,
         firstName: 'Mark',
-        lastName: 'Otto',
+        contrasena: 'Otto',
         username: '@mark',
         email: 'mark@gmail.com',
         age: '38',
@@ -114,7 +114,7 @@ export class ProfileComponent implements OnInit {
     {
         id: 12,
         firstName: 'Jacob',
-        lastName: 'Thornton',
+        contrasena: 'Thornton',
         username: '@jacob',
         email: 'jacob@yandex.ru',
         age: '48',
@@ -123,7 +123,7 @@ export class ProfileComponent implements OnInit {
     {
         id: 13,
         firstName: 'Haik',
-        lastName: 'Hakob',
+        contrasena: 'Hakob',
         username: '@haik',
         email: 'haik@outlook.com',
         age: '48',
@@ -132,7 +132,7 @@ export class ProfileComponent implements OnInit {
     {
         id: 14,
         firstName: 'Garegin',
-        lastName: 'Jirair',
+        contrasena: 'Jirair',
         username: '@garegin',
         email: 'garegin@gmail.com',
         age: '40',
@@ -141,7 +141,7 @@ export class ProfileComponent implements OnInit {
     {
         id: 15,
         firstName: 'Krikor',
-        lastName: 'Bedros',
+        contrasena: 'Bedros',
         username: '@krikor',
         email: 'krikor@yandex.ru',
         age: '32',

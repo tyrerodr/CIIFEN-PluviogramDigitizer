@@ -19,7 +19,7 @@ export const childRoutes: Routes = [
             //{ path: 'editor', loadChildren: './editor/editor.module#EditorModule' },
             { path: 'database', loadChildren: './database/database.module#DatabaseModule', canActivate: [loginGuardService] },
             { path: 'admin', loadChildren: './profile/profile.module#ProfileModule', canActivate: [AdminGuardService] },
-            //{ path: 'form', loadChildren: './form/form.module#FormModule' },
+            { path: 'form', loadChildren: './form/form.module#FormModule' },
             //{ path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
             //{ path: 'ui', loadChildren: './ui/ui.module#UIModule' },
             //{ path: 'table', loadChildren: './table/table.module#TableModule' },

@@ -7,21 +7,21 @@
             <tr>
               <th>Código de Estación</th>
               <th>Nombre</th>
-              <th>Ciudad</th>
-              <th>Provincia/Estado</th>
-              <th>País</th>
-              <th>STATE</th>
+              <th>Altitud</th>
+              <th>Latitud</th>
+              <th>Longitud</th>
+              <th>Acción</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let item of tableData | paginate: { id: 'pager', itemsPerPage: pageSize, currentPage: pageNumber};let index = index">
               <td>{{item.codigo}}</td>
               <td>{{item.name}}</td>
-              <td>{{item.ciudad}}</td>
-              <td>{{item.provincia}}</td>
-              <td>{{item.pais}}</td>
+              <td>{{item.altitud}}</td>
+              <td>{{item.latitud}}</td>
+              <td>{{item.longitud}}</td>
               <td>
-                <span class="label label-info">info</span>
+                <button type="submit"(click)="router.navigate(['/form']);"  class="btn-lg btn-default">ver</button>
               </td>
             </tr>
           </tbody>
@@ -44,7 +44,7 @@
                 <option>100</option>
                 <option>200</option>
               </select>
-              <span class="input-group-addon addon-right">Per Page</span>
+              <span class="input-group-addon addon-right">Página</span>
             </div>
           </div>
         </form>
