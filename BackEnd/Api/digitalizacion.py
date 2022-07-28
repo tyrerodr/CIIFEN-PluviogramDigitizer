@@ -6,7 +6,7 @@ from PIL import Image
 import numpy as np
 from skimage import exposure,img_as_float
 import cv2
-import pytesseract
+# import pytesseract
 from datetime import time
 from math import modf
 

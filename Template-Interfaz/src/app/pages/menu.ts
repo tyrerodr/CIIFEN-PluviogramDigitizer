@@ -20,7 +20,7 @@ export let MENU_ITEM = [
         icon: 'table'
     },
     {
-        path: 'profile',
+        path: 'admin',
         title: 'Administrador',
         icon: 'user'
     },

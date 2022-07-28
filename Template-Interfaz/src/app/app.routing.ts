@@ -4,12 +4,12 @@ import { PagesComponent } from './pages/pages.component';
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: 'pages/database',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
     path: '**',
-    redirectTo: 'pages/database'
+    redirectTo: 'login'
   }
 ];
 
