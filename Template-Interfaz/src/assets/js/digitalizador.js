@@ -26,6 +26,7 @@ $seleccionArchivos.addEventListener("change", () => {
 $btnDigitalizar.addEventListener("click", () => {
   const archivos = $seleccionArchivos.files;
   const primerArchivo = archivos[0];
+  console.log(primerArchivo)
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "http://127.0.0.1:3000/digitalizar?model=1", true);
   xhr.setRequestHeader('Content-Type', 'text/plain');
