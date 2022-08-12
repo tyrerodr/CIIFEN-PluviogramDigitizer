@@ -47,9 +47,9 @@ def resize(img,scale):
 
 def imageWithoutRedGrids(img):
 
-	limInferior=np.array([90,50,0],np.uint8)
+	limInferior=np.array([90,40,30],np.uint8)
 
-	limSuperior=np.array([145,200,255],np.uint8)
+	limSuperior=np.array([150,255,220],np.uint8)
 
 	imgarray= np.array(img)
 
@@ -149,7 +149,7 @@ def calculatePrecipitationRel(max_precipitation,min_precipitation,height):
 
 def calculatedPrecipitation(pixel, relation, max_precipitation, min_precipitation):
 	precipitation = (pixel * (1/relation)) 
-	return (max_precipitation -precipitation) - min_precipitation
+	return (max_precipitation -precipitation) 
 
 def hoursToMinutes(hours:int):
 	return hours*60
@@ -178,12 +178,10 @@ def calculateTimeRel(min_time: time, max_time: time, width):
 	return width/totTime
 
 def calculateTime(pixel,relation, min_time):
-	return (pixel* 1/relation) + totalMinutes(min_time)
+	return (pixel* 1/relation) + totalMinutes(min_time.hour, min_time.minute)
 
 def timeFormat(minutes: int , min_time: time)-> time:
-	#min_time_in_minutes = totalMinutes(min_time.hour,min_time.minute)
-	tot_minutes = minutes + min_time_in_minutes
-	hours,minutes,seconds = minutesAndHour(minutesToHours(tot_minutes))
+	hours,minutes,seconds = minutesAndHour(minutesToHours(minutes))
 	hours = hours-24 if hours >= 24 else hours 
 	return time(hours, minutes, seconds + min_time.second)
 
@@ -191,13 +189,13 @@ def timeFormat(minutes: int , min_time: time)-> time:
 def digitalization(img, model):
 	data={}
 	img= limitImage(img)
-	#img = resize(img,50)
+	img = resize(img,50)
 	precipitation_rel= calculatePrecipitationRel(model['max_precipitation'], model['min_precipitation'],
 												 img.shape[0])
 	time_rel= calculateTimeRel(model['min_time'], model['max_time'] , img.shape[1])
 	original_image= img
 	img = imageWithoutRedGrids(img)
-	img = binarization(img,150)
+	img = binarization(img,200)
 	rows, columns = img.shape
 	for y,row in list(enumerate(img)):
 		for x,column in list(enumerate(row)):
@@ -205,10 +203,10 @@ def digitalization(img, model):
 				precipitation = calculatedPrecipitation(y,precipitation_rel,model['max_precipitation']
 														, model['min_precipitation'])
 				time = calculateTime(x,time_rel, model['min_time'])
-				if time>= (15*60) and time <= (16*60) :
+				if time >= (17*60) and time<= (18*60):
 					orgiginal_image = cv2.circle(original_image, (x,y), 2, (0,255,255), 1)
 					time= timeFormat(time, model['min_time'])
-					print("({},{}) Precipitation : {}, Time: {}".format(x,y,precipitation,time))
+					print("({},{}) Precipitation : {}, Time: {}".format(y,x,precipitation,time))
 				
 				data["{},{}".format(x,y)]={'precipitation' : precipitation,
 											'time' : time}
@@ -239,56 +237,14 @@ def showImg(img):
 	cv2.waitKey()
 	cv2.destroyAllWindows()
 
-img=openImg("m162-01-04-2012-editada.png")
+
 #img=digitalization(img,model)
 #img=resize(img,50)
 #showImg(img)
 
 
-def prueba(img):
-	min_precipitation=-0.3
-	max_precipitation = 10.5
-
-	min_time= time(5,30,0)
-	max_time = time(7,11,0)
-
-	model ={'min_precipitation': min_precipitation,
-		'max_precipitation' : max_precipitation,
-		'min_time' : min_time,
-		'max_time' : max_time}
-	imgPreparetion= imageWithoutRedGrids(img)
-	
-	imgPreparetion = binarization(imgPreparetion,200)
-
-	img=resize(img,50)
-	img=limitImage(img)
-	colorTuple=[(255,0,255),(0,255,255),(0,255,255),(0,255,255),(0,255,255),(0,255,255),(0,255,255),(0,255,255),(0,255,255),(0,255,255),(0,255,255)]
-	pixelRelation= calculatePrecipitationRel(model['max_precipitation'], model['min_precipitation'],img.shape[0])
-	timeRelation= calculateTimeRel(model['min_time'], model['max_time'], img.shape[1])
-	for h in [8,15,22,5]:
-		totInitialMinutes= hoursToMinutes(h)- hoursToMinutes(min_time.hour) - min_time.minute
-		timePixels= int(totInitialMinutes * timeRelation)
-		for p in np.arange(11):
-			precipitationPixels = img.shape[0] - int(p*pixelRelation -(model['min_precipitation']*pixelRelation))
-			print(timePixels)
-			print(precipitationPixels)
-			img = cv2.circle(img, (timePixels,precipitationPixels), 2, colorTuple[p], 10)
-			
-	#return img
-
-			
-	showImg(img)
-
-min_precipitation=-0.3
-max_precipitation = 10.5
-
-min_time= time(5,30,0)
-max_time = time(7,11,0)
-model ={'min_precipitation': min_precipitation,
-		'max_precipitation' : max_precipitation,
-		'min_time' : min_time,
-		'max_time' : max_time}
 
 
-digitalization(img,model)
+
+#digitalization(img,model)
 #prueba(img)
