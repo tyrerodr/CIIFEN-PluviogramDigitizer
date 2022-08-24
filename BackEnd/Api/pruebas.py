@@ -2,6 +2,9 @@ import digitalizacion as dt
 from datetime import time
 import numpy as np
 import cv2
+import dataProcesing as dp
+import matplotlib.pyplot as plt
+import pandas as pd
 
 img=dt.openImg("m162-01-04-2012-editada.png")
 
@@ -52,8 +55,11 @@ model ={'min_precipitation': min_precipitation,
 		'min_time' : min_time,
 		'max_time' : max_time}
 
-dt.digitalization(img,model)
-
+data=dt.digitalization(img,model)
+df=dp.crudeDataClean(data)
+df_plot=df.plot('minutes','precipitation')
+plt.show()
+#relationTest(img)
 
 
 

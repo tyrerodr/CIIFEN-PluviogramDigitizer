@@ -46,32 +46,11 @@ def resize(img,scale):
 	return cv2.resize(img,dim)
 
 def imageWithoutRedGrids(img):
-
 	limInferior=np.array([90,40,30],np.uint8)
-
 	limSuperior=np.array([150,255,220],np.uint8)
-
 	imgarray= np.array(img)
-
 	img=identify_pluviogram_by_color(imgarray,limInferior,limSuperior)
-
-	#img_rgb = cv2.cvtColor(numbers_stripe(imgarray), cv2.COLOR_BGR2RGB)
-
-	#img_rgb= numbers_stripe(imgarray)
-
-	#print(pytesseract.image_to_data(img_rgb, lang='eng'))
-
-	#img=resize(img_blue,50)
-	#hImg, wImg, _ = img.shape
-
 	return img
-
-#boxes = pytesseract.image_to_boxes(img_rgb ,lang='eng', config='--psm 11 --oem 3 -c tessedit_char_whitelist=0123456789')
-#for b in boxes.splitlines():
-#	b = b.split(' ')
-#	print(b)
-#	x, y, w, h = int(b[1]), int(b[2]), int(b[3]), int(b[4])
-#	cv2.rectangle(img, (x, hImg - y), (w, hImg - h), (50, 50, 255), 1)
 
 #----------------
 #cv2.imshow("pluviograma",img)
@@ -120,7 +99,7 @@ def identifyLowerLimit(img):
 			index = i+begin_index
 			return index
 
-def identifyLeftyLimit(img):
+def identifyLeftLimit(img):
 	img= img[identifyUpperLimit(img):identifyLowerLimit(img)]
 	img = binarization(img,200)
 	firstRow = img[0]
@@ -139,7 +118,7 @@ def identifyRightLimit(img):
 def identifyLimits(img):
 	upperLimit=identifyUpperLimit(img)
 	lowerLimit=identifyLowerLimit(img)
-	leftLimit=identifyLeftyLimit(img)
+	leftLimit=identifyLeftLimit(img)
 	rightLimit= identifyRightLimit(img)
 	return lowerLimit,upperLimit,leftLimit,rightLimit
 
@@ -154,11 +133,20 @@ def calculatedPrecipitation(pixel, relation, max_precipitation, min_precipitatio
 def hoursToMinutes(hours:int):
 	return hours*60
 
+def hoursToSeconds(hours:int):
+	return hours*60*60
+
 def minutesToSeconds(minutes: int):
 	return minutes*60 
 
-def totalMinutes(hours, minutes):
-	return hoursToMinutes(hours) + minutes  
+def secondsToMinutes(seconds: int):
+	return seconds/60
+
+def TotalSeconds(hours, minutes,seconds):
+	return hoursToSeconds(hours) + minutesToSeconds(minutes) + seconds
+
+def totalMinutes(hours, minutes,seconds):
+	return hoursToMinutes(hours) + minutes + secondsToMinutes(seconds)
 
 def minutesToHours(minutes : int)-> float:
 	return minutes/60
@@ -173,21 +161,21 @@ def calculateTimeRel(min_time: time, max_time: time, width):
 	hours = 24 + max_time.hour - min_time.hour
 	hoursInMinutes = hoursToMinutes(hours)
 	minutes = max_time.minute - min_time.minute
+	second= (max_time.second - min_time.second)/60
 	totTime = hoursInMinutes + minutes
-	#totalMinutes(time(max_time.hour - min_time.hour, max_time.minute - min_time.minute))
 	return width/totTime
 
 def calculateTime(pixel,relation, min_time):
-	return (pixel* 1/relation) + totalMinutes(min_time.hour, min_time.minute)
+	return (pixel* 1/relation) + totalMinutes(min_time.hour, min_time.minute, min_time.second)
 
-def timeFormat(minutes: int , min_time: time)-> time:
+def timeFormat(minutes: int)-> time:
 	hours,minutes,seconds = minutesAndHour(minutesToHours(minutes))
 	hours = hours-24 if hours >= 24 else hours 
-	return time(hours, minutes, seconds + min_time.second)
+	return time(hours, minutes, seconds)
 
 
 def digitalization(img, model):
-	data={}
+	data=[]
 	img= limitImage(img)
 	img = resize(img,50)
 	precipitation_rel= calculatePrecipitationRel(model['max_precipitation'], model['min_precipitation'],
@@ -197,22 +185,33 @@ def digitalization(img, model):
 	img = imageWithoutRedGrids(img)
 	img = binarization(img,200)
 	rows, columns = img.shape
-	for y,row in list(enumerate(img)):
-		for x,column in list(enumerate(row)):
+	indexes= np.where(img != 1)
+	#for y,row in list(enumerate(img)):
+	#	for x,column in list(enumerate(row)):
+	#		if column != 0:
+	#			precipitation = calculatedPrecipitation(y,precipitation_rel,model['max_precipitation']
+	#													, model['min_precipitation'])
+	#			time = calculateTime(x,time_rel, model['min_time'])
+				#if True:
+				#	orgiginal_image = cv2.circle(original_image, (x,y), 1, (0,255,255), 1)
+				#	time= timeFormat(time)
+				#	print("({},{}) Precipitation : {}, Time: {}".format(y,x,precipitation,time))
+				
+	#			data.append([x,y,precipitation,timeFormat(time)])
+	
+	#showImg(original_image)
+	last_precipitation=0
+	aproximation= 0.8
+	aproximationMinus= -0.8
+	for x in range(columns):
+		for y in range(rows):
+			column=img[y,x]
 			if column != 0:
 				precipitation = calculatedPrecipitation(y,precipitation_rel,model['max_precipitation']
 														, model['min_precipitation'])
 				time = calculateTime(x,time_rel, model['min_time'])
-				if time >= (17*60) and time<= (18*60):
-					orgiginal_image = cv2.circle(original_image, (x,y), 2, (0,255,255), 1)
-					time= timeFormat(time, model['min_time'])
-					print("({},{}) Precipitation : {}, Time: {}".format(y,x,precipitation,time))
-				
-				data["{},{}".format(x,y)]={'precipitation' : precipitation,
-											'time' : time}
-	showImg(original_image)
+				data.append([x,y,precipitation,timeFormat(time)])
 	return data
-
 
 
 def limitImage(img):

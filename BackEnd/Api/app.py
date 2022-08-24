@@ -49,14 +49,13 @@ def save_band():
 		'max_precipitation' : model_data[5],
 		'min_time' : timeDeltaToTime(model_data[2]),
 		'max_time' : timeDeltaToTime(model_data[3])}
-		digitalizationDict = digitalizacion.digitalization(img,model)
 		cur.execute('INSERT INTO pluviograma(modelo) values ({})'.format(model_id))
 		conn.connection.commit()
 		cur.execute('SELECT idPluviograma FROM pluviograma ')
 		pluviogram_id= cur.fetchall()[-1]
-		for value in digitalizationDict.values():
-			cur.execute('INSERT INTO dato(precipitacion,hora,pluviogramaid) values ({},"{}",{})'.format(value['precipitation']
-																								,str(value['time']),pluviogram_id[0]))
+		for value in digitalizacion.digitalization(img,model):
+			cur.execute('INSERT INTO dato(precipitacion,hora,pluviogramaid) values ({},"{}",{})'.format(value[2]
+																								,str(value[3]),pluviogram_id[0]))
 		conn.connection.commit()
 		return "Ingresado"
 	return "Error"
