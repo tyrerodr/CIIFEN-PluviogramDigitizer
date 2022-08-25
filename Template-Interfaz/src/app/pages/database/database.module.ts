@@ -7,6 +7,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 /*DatabaseComponent*/ 
 import { DatabaseComponent } from './database.component';
+import { StationComponent } from '../station/station.component';
+// import { Levels2Component } from './components/levels-2/levels-2.component';
+// import { Levels1Component } from './components/levels-1/levels-1.component';
 
 @NgModule({
     imports: [
@@ -18,7 +21,10 @@ import { DatabaseComponent } from './database.component';
         routing
     ],
     declarations: [
-        DatabaseComponent
+        DatabaseComponent,
+        // StationComponent
+        // Levels2Component,
+        // Levels1Component
     ]
 })
 export class DatabaseModule { }

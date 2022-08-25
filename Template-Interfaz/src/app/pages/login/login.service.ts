@@ -29,14 +29,10 @@ export class loginService {
   } 
 
   UsuarioLogin(){
-
     if (this.getCookie("tipo")==""){
       return false
     }
-
       return true
-
-
   }
 
   UsuarioDigitalizador(){

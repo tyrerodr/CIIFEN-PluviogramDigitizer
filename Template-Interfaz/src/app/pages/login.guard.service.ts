@@ -9,13 +9,11 @@ export class loginGuardService implements CanActivate{
     constructor(private tipoUsuario: loginService,private _router: Router){}
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        const resultado=this.tipoUsuario.UsuarioLogin();
+        const resultado = this.tipoUsuario.UsuarioLogin();
         if(resultado){
-         
             return true;
         }
         else{
-         
             this._router.navigate([('login')]);
             return false;
         }

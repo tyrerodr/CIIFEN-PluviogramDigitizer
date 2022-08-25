@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { SelectComponent } from 'ng2-select';
 import { CargarScriptsService } from './../../cargar-scripts.service';
 
 @Component({
@@ -133,7 +135,7 @@ export class DatabaseComponent implements OnInit {
         longitud: '-20.10056'
     }
 ];
-  constructor(private _CargarScripts:CargarScriptsService) 
+  constructor(private _CargarScripts:CargarScriptsService, private router: Router) 
   {
     _CargarScripts.Carga(["tablas"]);
   }  
@@ -151,4 +153,9 @@ export class DatabaseComponent implements OnInit {
     this.pageNumber = pN;
   }
 
+  navegate(){
+    window.location.href = 'http://localhost:4200/pages/database/station';
+    console.log("Entra")
+  }
 }
+

@@ -1,0 +1,139 @@
+<div class="container">
+  <div class = "row justify-content-md-center title"><h1>Informacion del Pluviograma : AZE2001</h1></div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-5">
+    <card cardTitle="TABLA DE DATOS EXTRAIDOS">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Hora</th>
+            <th>Precipitacion</th>
+            <!-- <th>Accion</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of tableData | paginate: { id: 'pager', itemsPerPage: pageSize, currentPage: pageNumber};let index = index">
+            <td>{{item.hora}}</td>
+            <td>{{item.precipitacion}}</td>
+            <!-- <td>
+              <button type="submit" onclick='window.location="/pages/database/station/pluviograma"' class="btn-lg btn-default">Ver</button>
+            </td> -->
+          </tr>
+        </tbody>
+      </table>
+      <form class="pagination-wrapper">
+        <div class="form-group pages">
+          <pagination-controls class="my-pagination" id="pager" (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true"
+            autoHide="true" previousLabel="Prev" nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+            screenReaderCurrentLabel="You're on page">
+          </pagination-controls>
+        </div>
+        <div class="form-group options pages">
+          <div class="input-group input-group-sm">
+            <select class="form-control" name="pageChangedName" [(ngModel)]="pageSize" (ngModelChange)="loadData()">
+              <option>1</option>
+              <option>5</option>
+              <option>10</option>
+              <option>20</option>
+              <option>50</option>
+              <option>100</option>
+              <option>200</option>
+            </select>
+            <span class="input-group-addon addon-right">Per Page</span>
+          </div>
+        </div>
+      </form>
+    </card>
+  </div>
+  <div class="col-md-7">
+    <card cardTitle='Line Chart'>
+      <div echarts [options]="LineOption" [loading]="showloading" theme="dark" class="demo-chart"></div>
+    </card>
+  </div>
+  
+</div>
+
+
+
+
+<!-- <div class="card card-block animated fadeIn">
+    <div class="row">
+      <label class="control-label col-md-12">Font Awesome</label>
+      <div class="col-md-1 icon-box" *ngFor="let i of iconItem" title="fa fa-{{i}}">
+        <span class="fa fa-{{i}} icon"></span>
+        <span>{{i}}</span>
+      </div>
+      <a href="https://fontawesome.com/icons" target="_blank" class="btn btn-link">More Icons→</a>
+    </div>
+  </div> -->
+  
+ <!-- <div class="row">
+     <div class="col-md-3 animated fadeIn">
+      <div class="card card-block tip-card">
+        <div class="tip-msg">
+          <h3>Users</h3>
+          <span>118 / 251</span>
+        </div>
+        <button class="tip-ico tip-ico-primary">
+          <i class="fa fa-group fa-fw"></i>
+        </button>
+      </div>
+    </div>
+    <div class="col-md-3 animated fadeIn">
+      <div class="card card-block tip-card">
+        <div class="tip-msg">
+          <h3>Messages</h3>
+          <span>2 messages</span>
+        </div>
+        <button class="tip-ico tip-ico-info">
+          <i class="fa fa-comments fa-fw"></i>
+        </button>
+      </div>
+    </div>
+    <div class="col-md-3 animated fadeIn">
+      <div class="card card-block tip-card">
+        <div class="tip-msg">
+          <h3>Mails</h3>
+          <span>2 mails</span>
+        </div>
+        <button class="tip-ico tip-ico-success">
+          <i class="fa fa-envelope fa-fw"></i>
+        </button>
+      </div>
+    </div>
+    <div class="col-md-3 animated fadeIn">
+      <div class="card card-block tip-card">
+        <div class="tip-msg">
+          <h3>Feedback</h3>
+          <span>20 feedbacks</span>
+        </div>
+        <button class="tip-ico tip-ico-danger">
+          <i class="fa fa-warning fa-fw"></i>
+        </button>
+      </div>
+    </div> -->
+    <!-- <div class="col-md-8">
+      <card cardTitle='Bar Chart' isCollapse="true">
+        <div echarts [options]="AnimationBarOption" [loading]="showloading" theme="dark"></div>
+      </card>
+    </div> -->
+
+    <!-- <div class="col-md-4">
+      <card cardTitle="Todo List" isCollapse="true">
+        <du-todolist></du-todolist>
+      </card>
+    </div> -->
+    <!-- <div class="col-md-6">
+      <card>
+        <profile></profile>
+      </card>
+    </div> -->
+    <!-- <div class="col-md-6">
+      <card>
+        <weather></weather>
+      </card>
+    </div>
+  </div> --> 

@@ -1,10 +1,10 @@
 import { Routes, RouterModule } from '@angular/router';
-import { IndexComponent } from './index.component';
+import { PluviogramaComponent } from './pluviograma.component';
 
 const childRoutes: Routes = [
     {
         path: '',
-        component: IndexComponent
+        component: PluviogramaComponent
     }
 ];
 

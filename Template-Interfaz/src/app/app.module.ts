@@ -11,6 +11,7 @@ import { AdminGuardService } from './pages/admin.guard.service';
 import { loginService } from './pages/login/login.service';
 import { loginGuardService } from './pages/login.guard.service';
 import { DigitalizadorGuardService } from './pages/digitalizador.guard.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
