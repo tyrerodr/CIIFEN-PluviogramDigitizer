@@ -5,23 +5,26 @@
       <table class="table table-bordered table-hover order-table">
         <thead>
           <tr>
+            <th>Id</th>
             <th>TÉCNICO/DIGITALIAZDOR</th>
             <th>USUARIO</th>
             <th>EMAIL</th>
-            <th>CONTRASEÑA</th>
+            
             <th>ESTADO</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of tableData | paginate: { id: 'pager', itemsPerPage: pageSize, currentPage: pageNumber};let index = index">
-            <td>{{item.firstName}}</td>
-            <td>{{item.username}}</td>
-            <td>{{item.email}}</td>
-            <td>{{item.contrasena}}</td>
-            <td>{{item.estado}}</td>
+          <tr *ngFor="let item of tableData | paginate: { id: 'pager', itemsPerPage: pageSize, currentPage: pageNumber};let index = index" id="{{index}}">
+            <td id="{{index}}.4">{{item.id}}</td>
+            <td id="{{index}}.1">{{item.firstName}}</td>
+            <td id="{{index}}.2">{{item.username}}</td>
+            <td id="{{index}}.3">{{item.email}}</td>
+            <td id="{{index}}.5">{{item.estado}}</td>
             <td>
-              <button type="submit" class="btn-lg btn-default">Modificar</button>
+              <button class="btn-lg btn-default" id="{{index}}"  onclick="abrirpopup(this)" data-toggle="modal" data-target="#exampleModal" value="Modificar" >
+                Modificar
+              </button>
             </td>
           </tr>
         </tbody>
@@ -51,3 +54,22 @@
     </card>
   </div>
 </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modificar Usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="contenedor_modal">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" onclick="guardar()" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>      
