@@ -19,7 +19,7 @@ export const childRoutes: Routes = [
             { path: 'database/station/pluviograma', loadChildren: './pluviograma/pluviograma.module#PluviogramaModule' },
             { path: 'editor', loadChildren: './editor/editor.module#EditorModule' },
             { path: 'database', loadChildren: './database/database.module#DatabaseModule', canActivate: [loginGuardService] },
-            { path: 'database/station', loadChildren: './station/station.module#StationModule', canActivate: [loginGuardService] },
+            { path: 'database/station/:id', loadChildren: './station/station.module#StationModule', canActivate: [loginGuardService] },
             { path: 'admin', loadChildren: './profile/profile.module#ProfileModule', canActivate: [AdminGuardService] },
             { path: 'form', loadChildren: './form/form.module#FormModule' },
             { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },

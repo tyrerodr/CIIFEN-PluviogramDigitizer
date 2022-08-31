@@ -1,4 +1,3 @@
-
 from flask_mysqldb import MySQL
 import digitalizacion
 import json
@@ -18,12 +17,12 @@ CORS(app)
 # app.config['MYSQL_DB'] = 'prueba'
 # mysql = MySQL(app)
 
+mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
 
 
 
 @app.route('/login')
 def obtener_usuarios():	
-	mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
 	cur=mydb.cursor()
 	cur.execute('''SELECT * FROM ciifen.usuario''')
 	results= cur.fetchall()
@@ -35,18 +34,40 @@ def timeDeltaToTime(td):
 
 @app.route('/users')
 def obtener_users():	
-	mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
+	# mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
 	cur=mydb.cursor()
 	cur.execute('''SELECT * FROM ciifen.users''')
 	results= cur.fetchall()
 	response = jsonify(results)
 	return response
 
+
+@app.route('/estacion/<id>')
+def obtener_estacion(id):	
+	# mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
+	cur=mydb.cursor()
+	cur.execute('''SELECT * FROM ciifen.estacion where id_estacion= \"'+id+'\"''')
+	results= cur.fetchall()
+	response = jsonify(results)
+	return response
+
+
+
+@app.route('/estacion')
+def obtener_estaciones():	
+	# mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
+	cur=mydb.cursor()
+	cur.execute('''SELECT * FROM ciifen.estacion''')
+	results= cur.fetchall()
+	response = jsonify(results)
+	return response
+
+
 @app.route('/users/update/<id>', methods=['POST','GET'])
 def update(id):
 	data = {'message': 'Done', 'code': 'SUCCESS'}
 	if request.method == 'POST':
-		mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
+		# mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
 		cur=mydb.cursor()
 		print(id)
 		info=request.get_json()
