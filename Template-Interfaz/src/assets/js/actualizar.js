@@ -21,11 +21,17 @@ function abrirpopup(boton){
     contenedor.innerHTML='<form class="form">'+
     // '<h2>Modificar</h2>'+
     // <input class="form-control with-success-addon" placeholder="Mail" type="text"></input>
+    '<p>Id:</p>'+
     '<p type="ID:"><input class="form-control with-primary-addon" id = id value="'+id.textContent+'"></input></p>'+
+    '<p>Nombre:</p>'+
     '<p type="Name:"><input class="form-control with-primary-addon" id = name value="'+nombre.textContent+'"></input></p>'+
+    '<p>Email:</p>'+
     '<p type="Email:"><input class="form-control with-primary-addon" id=email value="'+email.textContent+'"></input></p>'+
+    '<p>Usuario:</p>'+
     '<p type="usuario:"><input class="form-control with-primary-addon" id=usuario value="'+usuario.textContent+'"></input></p>'+
+    '<p>Contraseña:</p>'+
     '<p type="contraseña:"><input class="form-control with-primary-addon" id=contraseña value="contraseña"></input></p>'+
+    '<p>Estado:</p>'+
     '<p type="estado:"><input class="form-control with-primary-addon" id=estado value="'+estado.textContent+'"></input></p>'+
     '</div>'+
   '</form>'
