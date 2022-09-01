@@ -1,5 +1,5 @@
 import digitalizacion as dt
-from datetime import time
+from datetime import time,datetime,date
 import numpy as np
 import cv2
 import dataProcesing as dp
@@ -55,8 +55,9 @@ model ={'min_precipitation': min_precipitation,
 		'min_time' : min_time,
 		'max_time' : max_time}
 
-data=dt.digitalization(img,model)
-df=dp.crudeDataClean(data)
+data=dt.digitalization(img,model,datetime(2012,1,1,6,30,0),1)
+infoDate=date(2012,1,1)
+df=dp.crudeDataClean(data[infoDate])
 df_plot=df.plot('minutes','precipitation')
 plt.show()
 #relationTest(img)
