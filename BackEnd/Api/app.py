@@ -101,6 +101,21 @@ def update(id):
 		cur.execute('UPDATE users SET idusers=\"'+id+'\",nombre=\"'+ nombre+'\",correo=\"'+email+'\",usuario=\"'+usuario+'\",contrasena=\"'+contraseña+'\",estado=\"'+estado+'\" where idusers='+idviejo)
 	return make_response(data,201)
 
+@app.route('/users/eliminar', methods=['POST','GET'])
+def eliminar():
+	data = {'message': 'Done', 'code': 'SUCCESS'}
+	if request.method == 'POST':
+		mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
+		cur=mydb.cursor()
+		
+		info=request.get_json()
+		'''id =request.args['id']'''
+		id= info['id']
+		print(id)
+		
+		cur.execute('delete from users where idusers='+id+';')
+	return make_response(data,201)
+
 '''@app.route('/digitalizar', methods=['POST','GET'])
 def save_band():
 	if request.method == 'POST':

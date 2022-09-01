@@ -63,15 +63,24 @@ function guardar(){
           return response.json();}
         return Promise.reject(response);}).then(function (data) {
         console.log(data);}).catch(function (error) {console.warn('Something went wrong.', error);});
-    
-    //modificar(id,nombreModificar,emailModificar,usuarioModificar,contraseñaModificar,estadoModificar)
-
-    /*conexion1 = psycopg2.connect(database="", user="", password="s", host="",port="")
-    cursor1 = conexion1.cursor()
-    cursor1.execute('UPDATE tabla SET idusers='+id+',nombre='+ nombreModificar+',correo='+emailModificar+',usario='+usuarioModificar+',contrasena='+contraseñaModificar+',estado='+estadoModificar+'where idusers='+id*/
   } 
 
 }
+function eliminar(){
+  idi=document.getElementById("id").value
+  fetch('http://127.0.0.1:3000/users/eliminar', {
+      method: 'POST', body: JSON.stringify({id: idi}),
+      headers: {'Content-type': 'application/json; charset=UTF-8'}}).then(function (response) {
+        if (response.ok) { 
+          window.location.reload();
+          return response.json();}
+        return Promise.reject(response);}).then(function (data) {
+        console.log(data);}).catch(function (error) {console.warn('Something went wrong.', error);});
+
+
+}
+  
+
 
 
 
