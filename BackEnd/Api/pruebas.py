@@ -57,9 +57,11 @@ model ={'min_precipitation': min_precipitation,
 
 data=dt.digitalization(img,model,datetime(2012,1,1,6,30,0),1)
 infoDate=date(2012,1,1)
-df=dp.crudeDataClean(data[infoDate])
-df_plot=df.plot('minutes','precipitation')
-plt.show()
+#df=dp.crudeDataClean(data[infoDate])
+#df_plot=df.plot('minutes','precipitation')
+#arrayMinutes=dp.intervalInMinutes(data[infoDate],10)
+dp.calculateSchedule(data[infoDate])
+#plt.show()
 #relationTest(img)
 
 

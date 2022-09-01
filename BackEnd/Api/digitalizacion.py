@@ -192,19 +192,6 @@ def digitalization(img, model,start, days):
 	for n in range(days-1):
 		data[infoDay]= 0
 		infoDay = infoDay + timedelta(days= 1)
-
-	#for y,row in list(enumerate(img)):
-	#	for x,column in list(enumerate(row)):
-	#		if column != 0:
-	#			precipitation = calculatedPrecipitation(y,precipitation_rel,model['max_precipitation']
-	#													, model['min_precipitation'])
-	#			time = calculateTime(x,time_rel, model['min_time'])
-				#if True:
-				#	orgiginal_image = cv2.circle(original_image, (x,y), 1, (0,255,255), 1)
-				#	time= timeFormat(time)
-				#	print("({},{}) Precipitation : {}, Time: {}".format(y,x,precipitation,time))
-				
-	#			data.append([x,y,precipitation,timeFormat(time)])
 	last_precipitation = 0 
 	full_counter=0
 	error_range = 1.5

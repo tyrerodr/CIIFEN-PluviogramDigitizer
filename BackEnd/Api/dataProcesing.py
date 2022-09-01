@@ -13,33 +13,38 @@ def crudeDataClean(data):
 
 	return df
 
+#def addToTimeSerie(arr,p,t):
+
 def intervalInMinutes(data,interval):
 	dataInInterval=[]
-	lastTime=data[0][3]
+	lastTime=0
 	lastPrecipitation=0
-	errorRange= 0.5
+	
+	for _,_,p,t in data:
+		if ((t.minute%interval)==0 ) and (lastTime != t.minute):
+			diffence=p-lastPrecipitation if p-lastPrecipitation>0 else 0
+			dataInInterval.append([diffence,t])
+			lastPrecipitation = p
+			lastTime = t.minute
 
-	i=0
-	while i<len(data):
-		precipitationDelta=data[i][2]-lastPrecipitation
-		m = lastTime.minute + interval
-		if m < 60:
-			lastTime= time(lastTime.hour,m,lastTime.second)
-		else : 
-			lastTime= time(lastTime.hour+1,m-60,lastTime.second)
-		t=digitalizacion.totalMinutes(lastTime)
-		if(t-errorRange <digitalizacion.totalMinutes(data[i+interval-1][3])< t+errorRange):
-			lastPrecipitation=data[i+interval-1][3]
-		else:
-			lastPrecipitation=data[i+interval][3]
-		dataInterval.append([data[i][3],precipitationDelta])
-		i+=interval
-	df=pd.DataFrame(dataInterval,columns=['time','precipitation'])
-	return df
+	#for d in dataInInterval:
+	# print("Precipitation:{}, time:{}".format(round(d[0],2),d[1]))
+	return dataInInterval
 
-def calculateNearTime(t,data,interval):
-	m = t.minute + interval
-	if m < 60:
-		lastTime= time(lastTime.hour,m,lastTime.second)
-	else : 
-		lastTime= time(lastTime.hour+1,m-60,lastTime.second)
+
+def calculateSchedule(data):
+	dataInSchedule=[]
+	lastTime=0
+	lastPrecipitation=0
+	for _,_,p,t in data:
+		if ( t.minute==0 ) and (lastTime != t.hour):
+			diffence=p-lastPrecipitation if p-lastPrecipitation>0 else 0
+			difference= p - lastPrecipitation
+			dataInSchedule.append([diffence,t])
+			lastPrecipitation= p
+			lastTime = t.hour
+
+	for p,t in dataInSchedule:
+		print(p,t)
+	return dataInSchedule
+
