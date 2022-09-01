@@ -16,7 +16,7 @@ export let MENU_ITEM = [
     },
     {
         path: 'database',
-        title: 'Base de Datos',
+        title: 'Tabla de Estaciones',
         icon: 'table',
     },
     // {
@@ -25,7 +25,7 @@ export let MENU_ITEM = [
     // },
     {
         path: 'admin',
-        title: 'Administrador',
+        title: 'Tabla de Usuarios',
         icon: 'user'
     },
     

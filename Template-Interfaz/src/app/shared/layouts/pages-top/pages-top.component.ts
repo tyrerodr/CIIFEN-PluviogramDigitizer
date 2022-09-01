@@ -7,7 +7,7 @@ import {GlobalService} from '../../services/global.service';
   styleUrls: ['./pages-top.component.scss'],
 })
 export class PagesTopComponent implements AfterViewInit {
-  logoImgSrc: string = '../../../../assets/images/logo-ciifen.png';
+  logoImgSrc: string = '../../../../assets/images/logo-ciifenTop.png';
   userName: string = 'tyrerodr';
   userPost: string = 'FrontEnd';
 
