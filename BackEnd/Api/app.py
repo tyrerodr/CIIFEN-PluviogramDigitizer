@@ -36,7 +36,7 @@ def timeDeltaToTime(td):
 def obtener_users():	
 	# mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
 	cur=mydb.cursor()
-	cur.execute('''SELECT * FROM ciifen.users''')
+	cur.execute('''SELECT * FROM ciifen.usuario''')
 	results= cur.fetchall()
 	response = jsonify(results)
 	return response
@@ -97,23 +97,20 @@ def update(id):
 		usuario =info['usuario']
 		contraseña =info['contraseña']
 		estado =info['estado']
-		
-		cur.execute('UPDATE users SET idusers=\"'+id+'\",nombre=\"'+ nombre+'\",correo=\"'+email+'\",usuario=\"'+usuario+'\",contrasena=\"'+contraseña+'\",estado=\"'+estado+'\" where idusers='+idviejo)
+		cur.execute('UPDATE usuario SET id_usuario=\"'+id+'\",nombre=\"'+ nombre+'\",correo=\"'+email+'\",usuario=\"'+usuario+'\",contrasena=\"'+contraseña+'\",estado=\"'+estado+'\" where id_usuario='+idviejo)
 	return make_response(data,201)
 
 @app.route('/users/eliminar', methods=['POST','GET'])
 def eliminar():
 	data = {'message': 'Done', 'code': 'SUCCESS'}
 	if request.method == 'POST':
-		mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
 		cur=mydb.cursor()
-		
 		info=request.get_json()
 		'''id =request.args['id']'''
 		id= info['id']
 		print(id)
 		
-		cur.execute('delete from users where idusers='+id+';')
+		cur.execute('delete from usuario where id_usuario='+id+';')
 	return make_response(data,201)
 
 '''@app.route('/digitalizar', methods=['POST','GET'])
