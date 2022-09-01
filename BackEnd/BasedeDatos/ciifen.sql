@@ -28,9 +28,9 @@ CREATE TABLE IF NOT EXISTS `ciifen`.`usuario` (
   `usuario` CHAR(10) NULL DEFAULT NULL,
   `correo` CHAR(100) NULL DEFAULT NULL,
   `contraseña` CHAR(12) NULL DEFAULT NULL,
+  `nombre` CHAR(100) NULL DEFAULT NULL,
   `tipo_usuario` CHAR(30) NULL DEFAULT NULL,
   `estado` TINYINT(1) NULL DEFAULT NULL,
-  `nombre` VARCHAR(100) NULL DEFAULT NULL,
   PRIMARY KEY (`id_usuario`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4

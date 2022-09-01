@@ -7,7 +7,13 @@ from flask import Flask,request,jsonify,make_response
 #import digitalizacion
 from flask_cors import CORS
 import mysql.connector
+import string
+import random
 
+
+  
+
+  
 
 app = Flask(__name__)
 CORS(app)
@@ -20,6 +26,9 @@ CORS(app)
 mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
 
 
+def idpluviograma():
+	length_of_string = 8
+	return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string))
 
 @app.route('/login')
 def obtener_usuarios():	
@@ -62,7 +71,7 @@ def obtener_pluviograma(id):
 
 
 @app.route('/pluviograma/<id>')
-def obtener_pluviogramas(id):	
+def obtener_pluviogramaId(id):	
 	# mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
 	cur=mydb.cursor()
 	cur.execute("SELECT * FROM ciifen.pluviograma where id_pluviograma=\'"+id+"\'")
@@ -79,6 +88,35 @@ def obtener_estaciones():
 	results= cur.fetchall()
 	response = jsonify(results)
 	return response
+
+@app.route('/modeloPluviogramas')
+def obtener_pluviogramasModelo():	
+	# mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
+	cur=mydb.cursor()
+	cur.execute('''SELECT distinct(modelo) FROM pluviograma;''')
+	results= cur.fetchall()
+	response = jsonify(results)
+	return response
+
+
+@app.route('/pluviograma/insert',methods=['POST','GET'])
+def añadirPluviograma():
+	data = {'message': 'Done', 'code': 'SUCCESS'}
+	if request.method == 'POST':
+		# mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
+		cur=mydb.cursor()
+		info = request.get_json()
+		imagen = info['imagen']
+		link = info['link']
+		fecha_fin = info['fecha_inicio']
+		fecha_inicio = info['fecha_fin']
+		estacion = info['estacion']
+		modelo = info['modelo']
+		cur.execute('INSERT INTO pluviograma values(\"'+idpluviograma()+'\",DEFAULT,\' ' + fecha_inicio +
+                    '\',\' ' + fecha_fin+' \',current_date(),\"'+modelo+'\",\"'+link+'\",1,\"' + estacion+'\",1);')
+		mydb.commit()
+	return make_response(data,201)
+
 
 
 @app.route('/users/update/<id>', methods=['POST','GET'])

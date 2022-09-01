@@ -16,7 +16,7 @@ export class RightConfigComponent implements OnInit {
 
   ngOnInit() { 
     document.getElementById('textouser')!.textContent = this.getCookie("username");
-    document.getElementById('textotipo')!.textContent = 'Usted es un '+this.getCookie("tipo");
+    document.getElementById('textotipo')!.textContent = 'Permisos de '+this.getCookie("tipo");
     this.asignarLogout();
   }
 

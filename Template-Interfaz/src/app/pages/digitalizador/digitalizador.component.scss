@@ -4,12 +4,16 @@ $blueciifen: #0f436b;
 }
 
 .row > .col {
-    margin-top: 70px;
+    margin-top: 50px;
 }
 
 #imagenPrevisualizacion {
     margin-bottom: 30px;
     //border: 1px solid $blueciifen; 
+}
+.col-md-3{
+    padding-bottom: 20px;
+    padding-top: 10px;
 }
 
 .btn-default{

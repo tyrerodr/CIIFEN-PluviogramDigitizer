@@ -23,14 +23,22 @@ $seleccionArchivos.addEventListener("change", () => {
 
 //escuchar cuando click
 $btnDigitalizar.addEventListener("click", () => {
-  const archivos = $seleccionArchivos.files;
-  const primerArchivo = archivos[0];
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://127.0.0.1:3000/digitalizar?model=1", true);
-  xhr.setRequestHeader('Content-Type', 'text/plain');
-  xhr.send(JSON.stringify({
-    value: primerArchivo
-  }));
+  
+  fetch('http://127.0.0.1:3000/pluviograma/insert', {
+      method: 'POST', body: JSON.stringify({imagen:document.getElementById("seleccionArchivos").value,
+      fecha_inicio:document.getElementById("inicio").value,fecha_fin:document.getElementById("fin").value,
+      modelo:document.getElementById("FormModelo").value,link:document.getElementById("seleccionArchivos").value,
+      estacion:document.getElementById("FormEstacion").value}),
+      headers: {'Content-type': 'application/json; charset=UTF-8'}});
+  // const archivos = $seleccionArchivos.files;
+  // const primerArchivo = archivos[0];
+  // var xhr = new XMLHttpRequest();
+  // xhr.open("POST", "http://127.0.0.1:3000/digitalizar?model=1", true);
+  // xhr.setRequestHeader('Content-Type', 'text/plain');
+  // xhr.send(JSON.stringify({
+  //   value: primerArchivo
+  // }));
+    window.location.reload();
 });
 
 

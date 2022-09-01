@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
        
           
           document.cookie = "username=" + usuario[1]+";path=/";
-          document.cookie = "tipo=" + usuario[4]+";path=/";
+          document.cookie = "tipo=" + usuario[5]+";path=/";
           document.cookie = "identificador=" + usuario[0]+";path=/";
          
           correcto = false;
