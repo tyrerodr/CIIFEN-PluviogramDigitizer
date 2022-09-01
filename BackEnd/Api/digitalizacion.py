@@ -8,6 +8,7 @@ from skimage import exposure,img_as_float
 import cv2
 import pytesseract
 from datetime import time, timedelta
+# import pytesseract
 from math import modf
 
 def saveImg(name,img):

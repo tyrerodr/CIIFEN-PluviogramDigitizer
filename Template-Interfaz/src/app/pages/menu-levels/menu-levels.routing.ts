@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
-import { MenuLevelsComponent } from './menu-levels.component';
 import { Levels2Component } from './components/levels-2/levels-2.component';
+import { MenuLevelsComponent } from './menu-levels.component';
+
 
 const childRoutes: Routes = [
     {

@@ -1,6 +1,6 @@
 <button class="config-switch " (click)="configToggle()">
   <i class="fa fa-user" *ngIf="!isConfigToggle"></i>
-  <span class="user-name" title="{{userName}}">{{userName}}</span>
+  <span class="user-name" id="textouser" title="{{userName}}">{{userName}}</span>
   <i class="fa fa-chevron-right" *ngIf="isConfigToggle"></i>
 </button>
 <div class="right-config-wrap" [ngClass]="{'right-config-wrap-on':isConfigToggle}">
@@ -9,12 +9,13 @@
       <i class="fa fa-user"></i>
       <span>Perfil</span>
     </h3>
-    <p class="desc">Usted es un Digitalizador.</p>
+    <p class="desc" id="textotipo"></p>
   </div>
-  <ul class="config-content">
-    <li class="config-list">
-      <span>Config1</span>
-      <switch switchName="config1" switchId="config1" multiple [checked]="true"></switch>
-    </li>
+  <ul class="boton-sesiones mt-auto p-2" id="boton-sesion">
+    <div class="d-flex justify-content-center">
+      <button  id= "logout" class="btn-lg btn-default" style="background-color:#f1f1f1; color:black" >
+          Cerrar Sesión
+      </button>
+    </div>
   </ul>
 </div>

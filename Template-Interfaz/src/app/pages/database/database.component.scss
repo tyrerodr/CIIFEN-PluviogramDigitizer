@@ -19,6 +19,18 @@
     }
 }
 
+.btn-default{
+    margin-top: 3px;
+    margin-bottom: 7px;
+}
+
+span.input-group-addon.addon-right{
+    color: #fff;
+    border: none;
+    /* margin: inherit; */
+    padding: 3px;
+    margin-left: 4px;
+}
 .my-pagination /deep/ .ngx-pagination {
     border: 1px solid $border-color;
     border-radius: 5px;

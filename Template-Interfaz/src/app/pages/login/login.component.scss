@@ -5,7 +5,7 @@
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 400px;
+    width: 950px;
     height: auto;
     .form-group {
         padding: 0;
@@ -39,4 +39,13 @@
         margin: 10px 0;
         color: lighten($fonts-color, 30%);
     }
+}
+*{
+font-size: 17px;
+padding: 5px;
+}
+
+img.logo-ciifen {
+    height: 138px;
+    margin-left: 361px;
 }

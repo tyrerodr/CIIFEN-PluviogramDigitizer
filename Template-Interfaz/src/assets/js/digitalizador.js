@@ -4,7 +4,6 @@
   $btnDigitalizar = document.querySelector("#btn-digitalizador");
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "image/png");
-
 // Escuchar cuando cambie
 $seleccionArchivos.addEventListener("change", () => {
   // Los archivos seleccionados, pueden ser muchos o uno
@@ -45,7 +44,6 @@ function codificar(im){
       canvas.height=400; 
       ctx.drawImage(im,0,0,300,400); 
   console.log(canvas.toDataURL().split('base64,')[1]); 
-       
   } 
   i.src=im; 
 } 

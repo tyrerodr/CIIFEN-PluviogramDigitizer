@@ -1,0 +1,63 @@
+<div class="container">
+  <div class = "row justify-content-md-center title"><h1>Informacion de la Estación : GPU21</h1></div>
+  <div class= "row justify-content-md-center col1">  
+    <div class="col col-md-auto"> <h5>Estación: 11111</h5></div>
+    <div class="col col-md-auto"> <h5>Altitud: 11111</h5></div>
+  </div>
+  <div class= "row justify-content-md-center col2">  
+    <div class="col col-md-auto"> <h5>Latitud: 11111</h5></div>
+    <div class="col col-md-auto"> <h5>Longitud: 11111</h5></div>
+  </div>
+
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+      <card cardTitle="TABLA DE PLUVIOGRAMAS">
+        <input class="form-control col-md-3 light-table-filter" data-table="order-table" type="text" placeholder="Search.." />
+        <table class="table table-bordered table-hover order-table">
+          <thead>
+            <tr>
+              <th>CODIGO</th>
+              <th>FECHA</th>
+              <th>MODELO PLUVIOGRAFO</th>
+              <th>ACCION</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of tableData | paginate: { id: 'pager', itemsPerPage: pageSize, currentPage: pageNumber};let index = index">
+              <td>{{item.codigo}}</td>
+              <td>{{item.fecha}}</td>
+              <td>{{item.modelo}}</td>
+              <td>
+                <button type="submit" onclick='window.location="/pages/database/station/pluviograma"' class="btn-lg btn-default">Ver</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <form class="pagination-wrapper">
+          <div class="form-group pages">
+            <pagination-controls class="my-pagination" id="pager" (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true"
+              autoHide="true" previousLabel="Prev" nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+              screenReaderCurrentLabel="You're on page">
+            </pagination-controls>
+          </div>
+          <div class="form-group options pages">
+            <div class="input-group input-group-sm">
+              <select class="form-control" name="pageChangedName" [(ngModel)]="pageSize" (ngModelChange)="loadData()">
+                <option>1</option>
+                <option>5</option>
+                <option>10</option>
+                <option>20</option>
+                <option>50</option>
+                <option>100</option>
+                <option>200</option>
+              </select>
+              <span class="input-group-addon addon-right">Página</span>
+            </div>
+          </div>
+        </form>
+      </card>
+    </div>
+  </div>
