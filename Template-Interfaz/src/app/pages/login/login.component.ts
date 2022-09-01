@@ -27,15 +27,14 @@ export class LoginComponent implements OnInit {
         console.log(usuario)
         // If response comes hideloader() function is called
         // to hide that loader
-        if(usuario[2] == password && usuario[1] == user){
+        if(usuario[3] == password && usuario[1] == user || usuario[2] == user ){
        
           
           document.cookie = "username=" + usuario[1]+";path=/";
-          document.cookie = "tipo=" + usuario[3]+";path=/";
+          document.cookie = "tipo=" + usuario[4]+";path=/";
           document.cookie = "identificador=" + usuario[0]+";path=/";
          
           correcto = false;
-          console.log("xd")
           window.location.href = 'http://localhost:4200/pages/database';
           break;
 

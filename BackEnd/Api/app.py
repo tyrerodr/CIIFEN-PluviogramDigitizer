@@ -46,11 +46,29 @@ def obtener_users():
 def obtener_estacion(id):	
 	# mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
 	cur=mydb.cursor()
-	cur.execute('''SELECT * FROM ciifen.estacion where id_estacion= \"'+id+'\"''')
+	cur.execute("SELECT * FROM ciifen.estacion where id_estacion=\'"+id+"\'")
 	results= cur.fetchall()
 	response = jsonify(results)
 	return response
 
+@app.route('/estacion/pluviograma/<id>')
+def obtener_pluviograma(id):	
+	# mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
+	cur=mydb.cursor()
+	cur.execute("SELECT * FROM ciifen.pluviograma where id_estacion=\'"+id+"\'")
+	results= cur.fetchall()
+	response = jsonify(results)
+	return response
+
+
+@app.route('/pluviograma/<id>')
+def obtener_pluviogramas(id):	
+	# mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
+	cur=mydb.cursor()
+	cur.execute("SELECT * FROM ciifen.pluviograma where id_pluviograma=\'"+id+"\'")
+	results= cur.fetchall()
+	response = jsonify(results)
+	return response
 
 
 @app.route('/estacion')

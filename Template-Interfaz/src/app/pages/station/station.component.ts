@@ -11,101 +11,22 @@ export class StationComponent implements OnInit {
     /* pagination Info */
     pageSize = 10;
     pageNumber = 1;
-    DATA = [
-      {
-          id: 1,
-          codigo: 'AZE2001',
-          fecha: '01/01/2007',
-          modelo: 'Modelo1'
-      },
-      {
-          id: 2,
-          codigo: 'AZE2001',
-          fecha: '01/01/2007',
-          modelo: 'Modelo1'
-      },
-      {
-          id: 3,
-          codigo: 'AZE2001',
-          fecha: '01/01/2007',
-          modelo: 'Modelo1'
-      },
-      {
-          id: 4,
-          codigo: 'AZE2001',
-          fecha: '01/01/2007',
-          modelo: 'Modelo1'
-      },
-      {
-          id: 5,
-          codigo: 'AZE2001',
-          fecha: '01/01/2007',
-          modelo: 'Modelo1'
-      },
-      {
-          id: 6,
-          codigo: 'AZE2001',
-          fecha: '01/01/2007',
-          modelo: 'Modelo1'
-      },
-      {
-          id: 7,
-          codigo: 'AZE2001',
-          fecha: '01/01/2007',
-          modelo: 'Modelo1'
-      },
-      {
-          id: 8,
-          codigo: 'AZE2001',
-          fecha: '01/01/2007',
-          modelo: 'Modelo1'
-      },
-      {
-          id: 9,
-          codigo: 'AZE2001',
-          fecha: '01/01/2007',
-          modelo: 'Modelo1'
-      },
-      {
-          id: 10,
-          codigo: 'AZE2001',
-          fecha: '01/01/2007',
-          modelo: 'Modelo1'
-      },
-      {
-          id: 11,
-          codigo: 'AZE2001',
-          fecha: '01/01/2007',
-          modelo: 'Modelo1'
-      },
-      {
-          id: 12,
-          codigo: 'AZE2001',
-          fecha: '01/01/2007',
-          modelo: 'Modelo1'
-      },
-      {
-          id: 13,
-          codigo: 'AZE2001',
-          fecha: '01/01/01',
-          modelo: 'Modelo1'
-      },
-      {
-          id: 14,
-          codigo: 'AZE2001',
-          fecha: '01/01/01',
-          modelo: 'Modelo1'
-      },
-      {
-          id: 15,
-          codigo: 'AZE2001',
-          fecha: '01/01/01',
-          modelo: 'Modelo1'
-      }
-  ];
+    pluviograma:{
+        id: string,
+        fecha_digitalizacion: string,
+        modelo: string,
+        };
+    
+        DATA: Array<{
+          id: string,
+          fecha_digitalizacion: string,
+          modelo: string,
+        }>=[]; 
+
+
   constructor(private _CargarScripts:CargarScriptsService) 
   {
-    _CargarScripts.Carga(["tablas"]);
+    _CargarScripts.Carga(["tablas","buscar"]);
   }  
   
   ngOnInit() {
@@ -113,8 +34,26 @@ export class StationComponent implements OnInit {
   }
   
   loadData() {
+    var pathname = window.location.pathname;
+    var id = pathname.split("/").pop(); 
+    console.log("Pluvio"+id)
+    fetch('http://127.0.0.1:3000//estacion/pluviograma/' + id)
+    .then(texto => texto.json())
+    .then(datos => {
+      console.log(datos)
+      for (let pluviogramas of datos) {
+        console.log("Pluvio"+pluviogramas[4])
+          this.pluviograma={
+            id: pluviogramas[0],
+            fecha_digitalizacion: pluviogramas[4],
+            modelo: pluviogramas[5],
+          };
+          this.DATA.push(this.pluviograma);
+      }
+  
+      
     this.tableData = this.DATA;
-  }
+  })}
   
   pageChanged(pN: number): void {
     this.pageNumber = pN;

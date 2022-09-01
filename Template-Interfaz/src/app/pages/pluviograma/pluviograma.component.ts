@@ -84,7 +84,7 @@ export class PluviogramaComponent implements OnInit {
 
   constructor(private _CargarScripts:CargarScriptsService,private _chartsService: ChartsService) 
   {
-    _CargarScripts.Carga(["tablas"]);
+    _CargarScripts.Carga(["tablas","pluviograma"]);
     this.LineOption = this._chartsService.getLineOption();
   }  
 

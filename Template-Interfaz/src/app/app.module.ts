@@ -7,10 +7,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CargarScriptsService } from './cargar-scripts.service';
-import { AdminGuardService } from './pages/admin.guard.service';
+import { AdminGuardService } from './pages/seguridad/admin.guard.service';
 import { loginService } from './pages/login/login.service';
-import { loginGuardService } from './pages/login.guard.service';
-import { DigitalizadorGuardService } from './pages/digitalizador.guard.service';
+import { loginGuardService } from './pages/seguridad/login.guard.service';
+import { DigitalizadorGuardService } from './pages/seguridad/digitalizador.guard.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 

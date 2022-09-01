@@ -2,19 +2,20 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot,Router, Route 
 
 
 import { Injectable } from '@angular/core';
-import { loginService } from './login/login.service';
+import { loginService } from '../login/login.service';
 
 @Injectable()
-export class AdminGuardService implements CanActivate{
+export class DigitalizadorGuardService implements CanActivate{
     constructor(private tipoUsuario: loginService,private _router: Router){}
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        const resultado=this.tipoUsuario.UsuarioAdministrador();
-        if(resultado){
+        const resultado=this.tipoUsuario.UsuarioDigitalizador();
+        const resultado2=this.tipoUsuario.UsuarioAdministrador();
+        if(resultado || resultado2){       
             return true;
         }
         else{
-            console.log("xd");
+            
             if(this.tipoUsuario.UsuarioLogin()){
                 alert("No tiene los permisos necesarios para acceder a esta página");
                 return false;

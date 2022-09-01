@@ -1,37 +1,26 @@
-<div class="container">
-  <div class = "row justify-content-md-center title"><h1>Informacion de la Estación : GPU21</h1></div>
-  <div class= "row justify-content-md-center col1">  
-    <div class="col col-md-auto"> <h5>Estación: 11111</h5></div>
-    <div class="col col-md-auto"> <h5>Altitud: 11111</h5></div>
-  </div>
-  <div class= "row justify-content-md-center col2">  
-    <div class="col col-md-auto"> <h5>Latitud: 11111</h5></div>
-    <div class="col col-md-auto"> <h5>Longitud: 11111</h5></div>
-  </div>
-
+<div class="container" id="TopEstacion">
+  
 </div>
-
-
 <div class="row">
     <div class="col-md-12">
       <card cardTitle="TABLA DE PLUVIOGRAMAS">
-        <input class="form-control col-md-3 light-table-filter" data-table="order-table" type="text" placeholder="Search.." />
+        <input class="form-control col-md-3 light-table-filter" data-table="order-table" type="text" placeholder="Buscar.." />
         <table class="table table-bordered table-hover order-table">
           <thead>
             <tr>
               <th>CODIGO</th>
-              <th>FECHA</th>
+              <th>FECHA DIGITALIZACION</th>
               <th>MODELO PLUVIOGRAFO</th>
               <th>ACCION</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let item of tableData | paginate: { id: 'pager', itemsPerPage: pageSize, currentPage: pageNumber};let index = index">
-              <td>{{item.codigo}}</td>
-              <td>{{item.fecha}}</td>
+              <td>{{item.id}}</td>
+              <td>{{item.fecha_digitalizacion}}</td>
               <td>{{item.modelo}}</td>
               <td>
-                <button type="submit" onclick='window.location="/pages/database/station/pluviograma"' class="btn-lg btn-default">Ver</button>
+                <button type="submit" id="{{item.id}}" onclick='buscarxPluviograma(this)' class="btn-lg btn-default">Ver</button>
               </td>
             </tr>
           </tbody>

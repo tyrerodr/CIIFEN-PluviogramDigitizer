@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { GlobalService } from '../../services/global.service';
-import { loginGuardService } from '../../../pages/login.guard.service';
+
 
 @Component({
   
@@ -12,7 +12,7 @@ export class ContentTopComponent implements OnInit {
   @Input() name: string;
 
   routeTitle;
-  
+  link;
   constructor(public _globalService: GlobalService) {
     this.getRouteTitle();
     }
@@ -20,7 +20,7 @@ export class ContentTopComponent implements OnInit {
   ngOnInit(): void {
   
   }
-
+  
   private getRouteTitle() {
     /* this._globalService.isActived$.subscribe(isActived => {
       this.routeTitle = isActived.title;
@@ -28,11 +28,19 @@ export class ContentTopComponent implements OnInit {
       console.log('Error: ' + error);
     }); */
 
+
+    
     this._globalService.data$.subscribe(data => {
       console.log("entra")
       if (data.ev === 'isActived') {
-        this.routeTitle = data.value.title;
-      }
+        this.routeTitle = data.value.title;}
+      // }else if(document.getElementById("tituloLink") != null){
+      //   console.log("HOLAAA")
+      //   var link = document.getElementById("tituloLink");
+      //   var pathname = window.location.pathname;
+      //   var id = pathname.split("/").pop(); 
+      //   link.innerHTML= id;
+      // }
     }, error => {
       console.log('Error: ' + error);
     });
