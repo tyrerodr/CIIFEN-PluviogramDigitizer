@@ -35,6 +35,7 @@ def timeDeltaToTime(td):
 @app.route('/users')
 def obtener_users():	
 	# mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
+	
 	cur=mydb.cursor()
 	cur.execute('''SELECT * FROM ciifen.usuario''')
 	results= cur.fetchall()
@@ -87,7 +88,6 @@ def update(id):
 	if request.method == 'POST':
 		# mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
 		cur=mydb.cursor()
-		print(id)
 		info=request.get_json()
 		'''id =request.args['id']'''
 		idviejo= info['idviejo']
@@ -97,21 +97,45 @@ def update(id):
 		usuario =info['usuario']
 		contraseña =info['contraseña']
 		estado =info['estado']
-		cur.execute('UPDATE usuario SET id_usuario=\"'+id+'\",nombre=\"'+ nombre+'\",correo=\"'+email+'\",usuario=\"'+usuario+'\",contrasena=\"'+contraseña+'\",estado=\"'+estado+'\" where id_usuario='+idviejo)
+		tipo= info['tipo']
+		print(idviejo)
+		cur.execute('UPDATE usuario SET id_usuario=\"'+id+'\",nombre=\"'+ nombre+'\",correo=\"'+email+'\",usuario=\"'+usuario+'\",contraseña=\"'+contraseña+'\",estado=\"'+estado+'\",tipo_usuario=\"'+tipo+'\" where id_usuario='+idviejo)
+		mydb.commit()
 	return make_response(data,201)
 
 @app.route('/users/eliminar', methods=['POST','GET'])
 def eliminar():
 	data = {'message': 'Done', 'code': 'SUCCESS'}
 	if request.method == 'POST':
+		
 		cur=mydb.cursor()
 		info=request.get_json()
 		'''id =request.args['id']'''
 		id= info['id']
-		print(id)
 		
 		cur.execute('delete from usuario where id_usuario='+id+';')
+		mydb.commit()
 	return make_response(data,201)
+
+@app.route('/users/añadir', methods=['POST','GET'])
+def añadir():
+	data = {'message': 'Done', 'code': 'SUCCESS'}
+	if request.method == 'POST':
+		cur=mydb.cursor()
+		info=request.get_json()
+		id =info['id']
+		nombre =info['nombre']
+		
+		email =info['email']
+		usuario =info['usuario']
+		contraseña =info['contraseña']
+		estado =info['estado']
+		tipo=info['tipo']
+	
+		cur.execute('INSERT INTO usuario (id_usuario,nombre,usuario,correo,contraseña,estado,tipo_usuario) VALUES ('+id+' ,\"'+ nombre+'\",\"'+email+'\",\"'+usuario+'\",\"'+contraseña+'\",\"'+estado+'\",\"'+tipo+'\");')
+		mydb.commit()
+	return make_response(data,201)
+
 
 '''@app.route('/digitalizar', methods=['POST','GET'])
 def save_band():

@@ -1,6 +1,9 @@
 <div class="row">
   <div class="col-md-12">
     <card cardTitle="TABLA DE USUARIOS">
+      <button class="btn-lg btn-default" id="{{index}}"  onclick="ventanaAñadir()" data-toggle="modal" data-target="#añadirUsuario" value="Modificar" >
+        Añadir Usuario
+      </button>
       <input class="form-control col-md-3 light-table-filter" data-table="order-table" type="text" placeholder="Buscar.." />
       <table class="table table-bordered table-hover order-table">
         <thead>
@@ -9,8 +12,8 @@
             <th>TÉCNICO/DIGITALIAZDOR</th>
             <th>USUARIO</th>
             <th>EMAIL</th>
-            
             <th>ESTADO</th>
+            <th>TIPO_DE_USUARIO</th>
             <th></th>
           </tr>
         </thead>
@@ -21,6 +24,7 @@
             <td id="{{index}}.2">{{item.username}}</td>
             <td id="{{index}}.3">{{item.email}}</td>
             <td id="{{index}}.5">{{item.estado}}</td>
+            <td id="{{index}}.6">{{item.tipo}}</td>
             <td>
               <button class="btn-lg btn-default" id="{{index}}"  onclick="abrirpopup(this)" data-toggle="modal" data-target="#exampleModal" value="Modificar" >
                 Modificar
@@ -74,3 +78,23 @@
     </div>
   </div>
 </div>      
+
+<div class="modal fade" id="añadirUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Añadir Usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="cont_añadir_usuarios">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" onclick="añadir()" class="btn btn-primary">Añadir</button>
+      </div>
+    </div>
+  </div>
+</div> 

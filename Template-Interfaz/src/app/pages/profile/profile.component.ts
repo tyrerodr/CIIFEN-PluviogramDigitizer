@@ -18,7 +18,8 @@ export class ProfileComponent implements OnInit {
     contrasena: string,
     username: string,
     email: string,
-    estado: string
+    estado: string,
+    tipo: string
 };
 
 
@@ -29,7 +30,8 @@ DATA: Array<{
     username: string,
     email: string,
 
-    estado: string
+    estado: string,
+    tipo: string
 }>=[]; 
 
 /*= [
@@ -196,11 +198,12 @@ loadData() {
     for (let users of datos) {
         this.x={
             id: users[0],
-            firstName: users[1],
-            contrasena: users[4],
-            username: users[2],
-            email: users[3],            
-            estado: users[5]
+            firstName: users[4],
+            contrasena: users[3],
+            username: users[1],
+            email: users[2],            
+            estado: users[6],
+            tipo: users[5]
         };
         this.DATA.push(this.x);
     }
