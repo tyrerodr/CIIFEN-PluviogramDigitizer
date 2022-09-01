@@ -19,6 +19,18 @@
     }
 }
 
+button.cerrar{
+    margin-top: 7px;
+    border: solid;
+}
+
+.modal-title{
+    padding-left: 135px;
+    font-size: x-large;
+    color: #0f436b;
+    line-height: 1.5em;
+}
+
 .my-pagination /deep/ .ngx-pagination {
     border: 1px solid $border-color;
     border-radius: 5px;
