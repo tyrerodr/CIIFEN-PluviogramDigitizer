@@ -97,19 +97,19 @@ function ventanaAñadir(){
   ventanaAñadir.innerHTML='<form class="form">'+
     //'<h2>Modificar</h2>'+
     '<p>Id:</p>'+
-    '<p type="ID:"><input id = idA></input></p>'+
+    '<p type="ID:"><input class="form-control with-primary-addon" id = idA></input></p>'+
     '<p>Nombre:</p>'+
-    '<p type="Name:"><input id = nameA ></input></p>'+
+    '<p type="Name:"><input class="form-control with-primary-addon" id = nameA ></input></p>'+
     '<p>Email:</p>'+
-    '<p type="Email:"><input id=emailA ></input></p>'+
+    '<p type="Email:"><input class="form-control with-primary-addon" id=emailA ></input></p>'+
     '<p>Usuario:</p>'+
-    '<p type="usuario:"><input id=usuarioA ></input></p>'+
+    '<p type="usuario:"><input class="form-control with-primary-addon" id=usuarioA ></input></p>'+
     '<p>Contraseña:</p>'+
-    '<p type="contraseña:"><input id=contraseñaA ></input></p>'+
+    '<p type="contraseña:"><input class="form-control with-primary-addon" id=contraseñaA ></input></p>'+
     '<p>Estado:</p>'+
-    '<p type="estado:"><input id=estadoA></input></p>'+
+    '<p type="estado:"><input class="form-control with-primary-addon" id=estadoA></input></p>'+
     '<p>Tipo de usuario:</p>'+
-    '<p type="estado:"><input id=tipoA></input></p>'+
+    '<p type="estado:"><input class="form-control with-primary-addon" id=tipoA></input></p>'+
     '</div>'+
   '</form>'
 

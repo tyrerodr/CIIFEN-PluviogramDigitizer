@@ -114,7 +114,7 @@ def añadirPluviograma():
 		estacion = info['estacion']
 		modelo = info['modelo']
 		cur.execute('INSERT INTO pluviograma values(\"'+idpluviograma()+'\",DEFAULT,\' ' + fecha_inicio +
-                    '\',\' ' + fecha_fin+' \',current_date(),\"'+modelo+'\",\"'+link+'\",1,\"' + estacion+'\",1);')
+                    '\',\' ' + fecha_fin+' \',curdate(),\"'+modelo+'\",\"'+link+'\",1,\"' + estacion+'\",1);')
 		mydb.commit()
 	return make_response(data,201)
 
@@ -170,7 +170,7 @@ def añadir():
 		estado =info['estado']
 		tipo=info['tipo']
 	
-		cur.execute('INSERT INTO usuario (id_usuario,nombre,usuario,correo,contraseña,estado,tipo_usuario) VALUES ('+id+' ,\"'+ nombre+'\",\"'+email+'\",\"'+usuario+'\",\"'+contraseña+'\",\"'+estado+'\",\"'+tipo+'\");')
+		cur.execute('INSERT INTO usuario (id_usuario,usuario,correo,contraseña,nombre,estado,tipo_usuario) VALUES ('+id+' ,\"'+ nombre+'\",\"'+email+'\",\"'+usuario+'\",\"'+contraseña+'\",\"'+estado+'\",\"'+tipo+'\");')
 		mydb.commit()
 	return make_response(data,201)
 
