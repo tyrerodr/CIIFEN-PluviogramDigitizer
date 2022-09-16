@@ -2,8 +2,6 @@
   $seleccionArchivos = document.querySelector("#seleccionArchivos"),
   $imagenPrevisualizacion = document.querySelector("#imagenPrevisualizacion"),
   $btnDigitalizar = document.querySelector("#btn-digitalizador");
-  var myHeaders = new Headers();
-  myHeaders.append("Content-Type", "image/png");
 // Escuchar cuando cambie
 $seleccionArchivos.addEventListener("change", () => {
   // Los archivos seleccionados, pueden ser muchos o uno
@@ -30,27 +28,33 @@ $btnDigitalizar.addEventListener("click", () => {
       modelo:document.getElementById("FormModelo").value,link:document.getElementById("seleccionArchivos").value,
       estacion:document.getElementById("FormEstacion").value}),
       headers: {'Content-type': 'application/json; charset=UTF-8'}});
-  // const archivos = $seleccionArchivos.files;
-  // const primerArchivo = archivos[0];
-  // var xhr = new XMLHttpRequest();
-  // xhr.open("POST", "http://127.0.0.1:3000/digitalizar?model=1", true);
-  // xhr.setRequestHeader('Content-Type', 'text/plain');
-  // xhr.send(JSON.stringify({
-  //   value: primerArchivo
-  // }));
-    window.location.reload();
+
+
+  const archivos = $seleccionArchivos.files;
+  const primerArchivo = archivos[0];
+  var data = primerArchivo;
+
+
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "image/png");
+  
+  var file = primerArchivo;
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: file,
+    redirect: 'follow'
+  };
+
+  fetch('http://127.0.0.1:3000/digitalizar?' + new URLSearchParams({
+    name: 'pluviogramaPrueba2',
+    model_id: 1,}), requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+
+  window.location.reload();
+
 });
 
-
-function codificar(im){ 
-  var i=new Image(); 
-  i.onload=function(){ 
-      var canvas=document.createElement('canvas'), 
-      ctx=canvas.getContext('2d'); 
-      canvas.width=300; 
-      canvas.height=400; 
-      ctx.drawImage(im,0,0,300,400); 
-  console.log(canvas.toDataURL().split('base64,')[1]); 
-  } 
-  i.src=im; 
-} 
+  
