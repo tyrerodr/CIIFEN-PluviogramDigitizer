@@ -24,9 +24,9 @@ $btnDigitalizar.addEventListener("click", () => {
   const archivos = $seleccionArchivos.files;
   const primerArchivo = archivos[0];
   var data = primerArchivo;
-  UploadDataData(primerArchivo)
 
-  /*var myHeaders = new Headers();
+
+  var myHeaders = new Headers();
   myHeaders.append("Content-Type", "image/png");
   
   var file = primerArchivo;
@@ -37,11 +37,13 @@ $btnDigitalizar.addEventListener("click", () => {
     redirect: 'follow'
   };
 
-  fetch("http://127.0.0.1:3000/digitalizar", requestOptions)
+  fetch('http://127.0.0.1:3000/digitalizar?' + new URLSearchParams({
+    name: 'pluviogramaPrueba2',
+    model_id: 1,}), requestOptions)
     .then(response => response.text())
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
-    */
+    
 
  /*   const archivos = $seleccionArchivos.files;
     const blob = archivos[0];

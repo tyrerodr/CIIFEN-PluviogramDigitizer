@@ -96,10 +96,10 @@ def save_band():
 		img= request.get_data()
 		#info= request.get_json()
 		#name= info['nombre']
-		name=request.args['nombre']
+		name=request.args['name']
 		name= name.split()[0]
 		#model_id= info['modelo']
-		model_id =request.args['modelo']
+		model_id =request.args['model_id']
 		try:
 			parent= os.getcwd()
 			path=os.path.join(parent+"/{}".format(PLU_PATH),name)
