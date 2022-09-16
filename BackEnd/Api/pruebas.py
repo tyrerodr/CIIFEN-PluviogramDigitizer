@@ -5,6 +5,7 @@ import cv2
 import dataProcesing as dp
 import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 
 img=dt.openImg("m162-01-04-2012-editada.png")
 
@@ -55,15 +56,30 @@ model ={'min_precipitation': min_precipitation,
 		'min_time' : min_time,
 		'max_time' : max_time}
 
-data=dt.digitalization(img,model,datetime(2012,1,1,6,30,0),1)
-infoDate=date(2012,1,1)
-#df=dp.crudeDataClean(data[infoDate])
-#df_plot=df.plot('minutes','precipitation')
-#arrayMinutes=dp.intervalInMinutes(data[infoDate],10)
-dp.calculateSchedule(data[infoDate])
-#plt.show()
-#relationTest(img)
 
+data=dt.digitalization(img,model,datetime(2012,1,1,6,30,0),1)
+withoutIncrement=[]
+infoDate=date(2012,1,1)
+for x,y,p,t in data:
+	withoutIncrement.append([x,y,p - (p//10)*10,t])
+		
+df=dp.crudeDataClean(withoutIncrement)
+df_plot=df.plot('minutes','precipitation')
+
+arr1=[]
+arr2=[]
+dp.planifier(data,10,arr1,arr2)
+
+for data in arr1:
+	print("precipitación: {} hora:{}".format(data[0],data[1]))
+
+print("-----------------------------------")
+
+for data in arr2:
+	print("precipitación: {} hora:{}".format(data[0],data[1]))
+
+plt.show()
+#relationTest(img)
 
 
 #dt.showImg( dt.binarization(dt.resize(dt.imageWithoutRedGrids(img),50),200))

@@ -213,16 +213,16 @@ def digitalization(img, model,start, days):
 				c=isAcceptable(error_range,precipitation,last_precipitation,full_counter,model['max_precipitation'])
 				if(c>=0):
 					if(c==1):
-						print(full_counter)
+						#print(full_counter)
 						full_counter += 1
 						precipitation = precipitation + 10
-					info.append([x,y,precipitation,timeFormat(time)])
+					info.append([x,y,precipitation,time])
 					last_precipitation= precipitation 
 					#orgiginal_image = cv2.circle(original_image, (x,y), 1, (0,255,255), 1)	
 					break
 	data[infoDay]= info
 	#showImg(original_image)
-	return data
+	return info
 
 def isAcceptable(error_range,precipitation,last_precipitation,counter,max_precipitation):
 	millimetersAcumulated= counter*10
@@ -244,8 +244,11 @@ def limitImage(img):
 	img= img[upper_limit:lower_limit,left_Limit:right_limit]
 	return img
 
-
-
+def changeRange(arr):
+	withoutIncrement=[]
+	for _,_,p,t in arr:
+		withoutIncrement.append([p - (p//10)*10,t])
+	return withoutIncrement
 #precipitation_rel = calculatePrecipitationRel(max_precipitation,min_precipitation,img.shape[0])
 #time_rel = calculateTimeRel(min_time,max_time,img.shape[1])
 
