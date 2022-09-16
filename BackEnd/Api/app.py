@@ -27,9 +27,11 @@ mydb = mysql.connector.connect(host="localhost", user="root",
 
 # mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="prueba")
 
-def idpluviograma():
-    length_of_string = 8
-    return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string))
+def idpluviograma(estacion,fecha):
+    # length_of_string = 8
+    año,mes,dia = fecha.split("-")
+    return 'PUVLI' + estacion + año[2:] + mes + dia 
+    # .join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string))
 
 
 @app.route('/login')
@@ -105,7 +107,7 @@ def obtener_estaciones():
 def obtener_pluviogramasModelo():
     # mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
     cur = mydb.cursor()
-    cur.execute('''SELECT distinct(modelo) FROM pluviograma;''')
+    cur.execute('''SELECT distinct(modelo) FROM pluviograma''')
     results = cur.fetchall()
     response = jsonify(results)
     return response
@@ -125,7 +127,7 @@ def añadirPluviograma():
         estacion = info['estacion']
         modelo = info['modelo']
 
-        cur.execute('INSERT INTO pluviograma values(\"'+idpluviograma()+'\",DEFAULT,\' ' + fecha_inicio +
+        cur.execute('INSERT INTO pluviograma values(\"'+idpluviograma(estacion,fecha_inicio)+'\",DEFAULT,\' ' + fecha_inicio +
                     '\',\' ' + fecha_fin+' \',curdate(),\"'+modelo+'\",\"'+link+'\",1,\"' + estacion+'\",1);')
         mydb.commit()
     return make_response(data, 201)
@@ -206,10 +208,10 @@ def save_band():
 		img= request.get_data()
 		#info= request.get_json()
 		#name= info['nombre']
-		name=request.args['name']
-		name= name.split()[0]
+		# name=request.args['name']
+		name= idpluviograma(request.args['estacion'],request.args['inicio'])
 		#model_id= info['modelo']
-		model_id =request.args['model_id']
+		model_id =request.args['modelo']
 		try:
 			parent= os.getcwd()
 			path=os.path.join(parent+"/{}".format(PLU_PATH),name)
@@ -221,7 +223,7 @@ def save_band():
 			f.write(img)
 		img= digitalizacion.openImg("{}/{}/img.png".format(PLU_PATH,name))
 		cur= mydb.cursor()
-		cur.execute('SELECT * FROM prueba.modelo where idModelo = {}'.format(model_id))
+		cur.execute('SELECT * FROM modelo where nombre = {}'.format(model_id))
 		model_data=cur.fetchall()[0]
 		model={'min_precipitation': model_data[4],
 		'max_precipitation' : model_data[5],
@@ -240,11 +242,11 @@ def save_band():
 				json.dump({'data': digitalizacion.changeRange(data),
 					'dataAcumulated':data,'minutes':dataInInterval,'hours':dataInSchedule},f)
 
-			query='''INSERT INTO prueba.pluviograma(modelo,nombre)
-							VALUES (%s,%s)'''
-			values=(model_id,name)
-			cur.execute(query,values)																							
-			mydb.commit()
+			# query='''INSERT INTO prueba.pluviograma(modelo,nombre)
+			# 				VALUES (%s,%s)'''
+			# values=(model_id,name)
+			# cur.execute(query,values)																							
+			# mydb.commit()
 			return make_response("Digitalización exitosa",200)
 		except mysql.connector.Error as error:
 			print(error)
@@ -253,15 +255,15 @@ def save_band():
 			cur.close()
 	return make_response("Error con la petición",400)
 
-@app.route('/pluviograma/<id>')
+@app.route('/pluviogramaSeriedetiempo/<id>')
 def get_pluviogram_data(id):
 	cur= mydb.cursor()
 	try:
-		query= "SELECT nombre FROM prueba.pluviograma where idPluviograma= %s"
-		print(id)
-		values = (id,)
-		cur.execute(query,values)
-		name= cur.fetchall()[0][0]
+		# query= "SELECT nombre FROM prueba.pluviograma where idPluviograma= %s"
+		# print(id)
+		# values = (id,)
+		# cur.execute(query,values)
+		name= id
 		f= open('{}/{}/data.json'.format(PLU_PATH,name))
 		dataJson=json.load(f)
 		f.close()

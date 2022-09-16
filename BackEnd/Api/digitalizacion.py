@@ -1,14 +1,8 @@
-import matplotlib
-import matplotlib.pyplot as plt
-import skimage as sk
-from skimage import io
-from PIL import Image
+
 import numpy as np
-from skimage import exposure,img_as_float
+from skimage import exposure
 import cv2
-import pytesseract
 from datetime import time, timedelta
-# import pytesseract
 from math import modf
 
 def saveImg(name,img):
