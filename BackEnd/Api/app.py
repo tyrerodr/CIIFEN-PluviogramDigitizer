@@ -23,7 +23,7 @@ CORS(app)
 # mysql = MySQL(app)
 
 mydb = mysql.connector.connect(host="localhost", user="root",
-                               passwd="", database="ciifen", auth_plugin='mysql_native_password')
+                               passwd="", database="ciifen")
 
 # mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="prueba")
 
@@ -34,7 +34,7 @@ def idpluviograma(estacion,fecha):
     # .join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string))
 
 
-@app.route('/login')
+@app.route('/login')	
 def obtener_usuarios():
     cur = mydb.cursor()
     cur.execute('''SELECT * FROM ciifen.usuario''')
@@ -108,7 +108,7 @@ def obtener_pluviogramasModelo():
     # mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
     cur = mydb.cursor()
     cur.execute('''SELECT nombre FROM modelo''')
-    results = cur.fetchall()
+    results = cur.fetchone()
     response = jsonify(results)
     return response
 

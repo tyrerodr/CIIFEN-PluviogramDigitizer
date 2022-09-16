@@ -44,10 +44,10 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 CREATE TABLE IF NOT EXISTS `ciifen`.`modelo` (
   `id_modelo` INT NOT NULL AUTO_INCREMENT ,
-  `nombre` CHAR(10) NULL DEFAULT NULL UNIQUE,
+  `nombre` CHAR(100) NULL DEFAULT NULL UNIQUE,
   `correo` CHAR(100) NULL DEFAULT NULL,
-  `tiempo_min` DATE NULL DEFAULT NULL,
-  `tiempo_max` DATE NULL DEFAULT NULL,
+  `tiempo_min` TIME NULL DEFAULT NULL,
+  `tiempo_max` TIME NULL DEFAULT NULL,
   `precipitacion_min` FLOAT NULL DEFAULT NULL,
   `precipitacion_max` FLOAT NULL DEFAULT NULL,
   PRIMARY KEY (`id_modelo`))
