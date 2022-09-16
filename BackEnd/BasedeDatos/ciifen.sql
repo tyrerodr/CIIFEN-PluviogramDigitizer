@@ -117,7 +117,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `ciifen`.`pluviograma`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ciifen`.`pluviograma` (
-  `id_pluviograma` VARCHAR(10) NOT NULL,
+  `id_pluviograma` VARCHAR(100) NOT NULL,
   `imagen` BLOB NULL DEFAULT NULL,
   `Fecha_inicio` DATE NULL DEFAULT NULL,
   `Fecha_Fin` DATE NULL DEFAULT NULL,

@@ -95,21 +95,31 @@ def timeDeltaToTime(td):
 
 @app.route('/estacion')
 def obtener_estaciones():
-    # mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
-    cur = mydb.cursor()
-    cur.execute('''SELECT * FROM ciifen.estacion''')
-    results = cur.fetchall()
-    response = jsonify(results)
+    # mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')  
+    try:
+    	cur = mydb.cursor()
+    	cur.execute('''SELECT * FROM estacion''')
+    	results = cur.fetchall()
+    	response = jsonify(results)
+    	cur.close()
+    except mysql.connector.Error as error:
+    	print(error)
+    	return make_response("-1",500)
     return response
 
 
 @app.route('/modeloPluviogramas')
 def obtener_pluviogramasModelo():
     # mydb=mysql.connector.connect(host="localhost",user="root",passwd="",database="ciifen",auth_plugin='mysql_native_password')
-    cur = mydb.cursor()
-    cur.execute('''SELECT nombre FROM modelo''')
-    results = cur.fetchone()
-    response = jsonify(results)
+    try:
+    	cur = mydb.cursor()
+    	cur.execute('''SELECT nombre FROM modelo''')
+    	results = cur.fetchall()
+    	response = jsonify(results)
+    	cur.close()
+    except mysql.connector.Error as error:
+    	print(error)
+    	return make_response("Problemas con el servidor",500)
     return response
 
 
