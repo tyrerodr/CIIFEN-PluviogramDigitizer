@@ -23,7 +23,7 @@ function abrirpopup(boton){
     contenedor.innerHTML='<form class="form">'+
     // '<h2>Modificar</h2>'+
     // <input class="form-control with-success-addon" placeholder="Mail" type="text"></input>
-    '<p>Id:</p>'+
+    '<p id ="idOcultar">Id:</p>'+
     '<p type="ID:"><input class="form-control with-primary-addon" id = id value="'+id.textContent+'"></input></p>'+
     '<p>Nombre:</p>'+
     '<p type="Name:"><input class="form-control with-primary-addon" id = name value="'+nombre.textContent+'"></input></p>'+
@@ -32,13 +32,17 @@ function abrirpopup(boton){
     '<p>Usuario:</p>'+
     '<p type="usuario:"><input class="form-control with-primary-addon" id=usuario value="'+usuario.textContent+'"></input></p>'+
     '<p>Contraseña:</p>'+
-    '<p type="contraseña:"><input class="form-control with-primary-addon" id=contraseña value="contraseña"></input></p>'+
+    '<p type="contraseña:"><input class="form-control with-primary-addon" id=contraseña value="*********"></input></p>'+
     '<p>Estado:</p>'+
     '<p type="estado:"><input class="form-control with-primary-addon" id=estado value="'+estado.textContent+'"></input></p>'+
     '<p>Tipo de usuario:</p>'+
     '<p type="estado:"><input class="form-control with-primary-addon" id=tipo value="'+tipo.textContent+'"></input></p>'+
     '</div>'+
   '</form>'
+
+  document.getElementById("id").style.display = 'none';
+  document.getElementById("idOcultar").style.display = 'none';
+
 }
 
 function guardar(){
@@ -96,8 +100,6 @@ function ventanaAñadir(){
   ventanaAñadir= document.getElementById("cont_añadir_usuarios")
   ventanaAñadir.innerHTML='<form class="form">'+
     //'<h2>Modificar</h2>'+
-    '<p>Id:</p>'+
-    '<p type="ID:"><input class="form-control with-primary-addon" id = idA></input></p>'+
     '<p>Nombre:</p>'+
     '<p type="Name:"><input class="form-control with-primary-addon" id = nameA ></input></p>'+
     '<p>Email:</p>'+
@@ -124,7 +126,7 @@ function añadir(){
   estadoModificar=""
   tipoModificar=""
 
-  if((document.getElementById("idA").value)=="" || (document.getElementById("nameA").value)=="" || (document.getElementById("emailA").value)=="" || (document.getElementById("usuarioA").value)=="" || (document.getElementById("contraseñaA").value)=="" || (document.getElementById("estadoA").value)==""){
+  if((document.getElementById("nameA").value)=="" || (document.getElementById("emailA").value)=="" || (document.getElementById("usuarioA").value)=="" || (document.getElementById("contraseñaA").value)=="" || (document.getElementById("estadoA").value)==""){
     console.log("llene todo los datos")
   }
   else{
@@ -133,16 +135,13 @@ function añadir(){
     usuarioModificar= document.getElementById("usuarioA").value
     contraseñaModificar= document.getElementById("contraseñaA").value
     estadoModificar= document.getElementById("estadoA").value
-    idi=document.getElementById("idA").value
     tipoModificar=document.getElementById("tipoA").value
 
-    console.log("idi")
-    console.log(idi)
     
-    var dic= {id:idi,nombre:nombreModificar,email:emailModificar,usuario:usuarioModificar,contraseña:contraseñaModificar,estado:estadoModificar,tipo:tipoModificar}
+    var dic= {nombre:nombreModificar,email:emailModificar,usuario:usuarioModificar,contraseña:contraseñaModificar,estado:estadoModificar,tipo:tipoModificar}
     
     fetch('http://127.0.0.1:3000/users/añadir', {
-      method: 'POST', body: JSON.stringify({id:idi,nombre:nombreModificar,email:emailModificar,usuario:usuarioModificar,contraseña:contraseñaModificar,estado:estadoModificar,tipo: tipoModificar}),
+      method: 'POST', body: JSON.stringify({nombre:nombreModificar,email:emailModificar,usuario:usuarioModificar,contraseña:contraseñaModificar,estado:estadoModificar,tipo: tipoModificar}),
       headers: {'Content-type': 'application/json; charset=UTF-8'}}).then(function (response) {
         if (response.ok) { 
           window.location.reload();

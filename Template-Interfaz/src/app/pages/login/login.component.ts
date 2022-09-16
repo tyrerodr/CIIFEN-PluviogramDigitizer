@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {Md5} from "md5-typescript";
+
 
 @Component({
   selector: 'app-login',
@@ -23,11 +25,14 @@ export class LoginComponent implements OnInit {
       if (user == "" && password == "") {
         alert("Complete todos los campos");
       }
+      console.log(password);
       for (let usuario of datos) {
-        console.log(usuario)
+        // console.log(usuario)
         // If response comes hideloader() function is called
         // to hide that loader
-        if(usuario[3] == password && usuario[1] == user || usuario[2] == user ){
+        
+        console.log(usuario[3] + "-------"+ Md5.init(password));
+        if(usuario[3] == Md5.init(password) && usuario[1] == user || usuario[2] == user ){
        
           
           document.cookie = "username=" + usuario[1]+";path=/";

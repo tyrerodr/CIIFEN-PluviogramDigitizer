@@ -24,10 +24,10 @@ USE `ciifen` ;
 -- Table `ciifen`.`usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ciifen`.`usuario` (
-  `id_usuario` INT NOT NULL AUTO_INCREMENT,
-  `usuario` CHAR(10) NULL DEFAULT NULL,
+  `id_usuario` INT NOT NULL AUTO_INCREMENT ,
+  `usuario` CHAR(10) NULL DEFAULT NULL UNIQUE,
   `correo` CHAR(100) NULL DEFAULT NULL,
-  `contraseña` CHAR(12) NULL DEFAULT NULL,
+  `contraseña` CHAR(100) NULL DEFAULT NULL,
   `nombre` CHAR(100) NULL DEFAULT NULL,
   `tipo_usuario` CHAR(30) NULL DEFAULT NULL,
   `estado` TINYINT(1) NULL DEFAULT NULL,
@@ -41,7 +41,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `ciifen`.`mantenimiento`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ciifen`.`mantenimiento` (
-  `id_mantenimiento` INT NOT NULL,
+  `id_mantenimiento` INT NOT NULL AUTO_INCREMENT,
   `tipo_mantenimiento` CHAR(30) NULL DEFAULT NULL,
   `fecha` DATE NULL DEFAULT NULL,
   `detalle` CHAR(200) NULL DEFAULT NULL,
@@ -57,7 +57,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `ciifen`.`instrumento`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ciifen`.`instrumento` (
-  `id_instrumento` INT NOT NULL,
+  `id_instrumento` INT NOT NULL AUTO_INCREMENT,
   `codigo` CHAR(13) NULL DEFAULT NULL,
   `tipo` CHAR(30) NULL DEFAULT NULL,
   `marca` CHAR(30) NULL DEFAULT NULL,
@@ -124,7 +124,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `ciifen`.`actividad`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ciifen`.`actividad` (
-  `id_actividad` INT NOT NULL,
+  `id_actividad` INT NOT NULL AUTO_INCREMENT,
   `tipoActividad` CHAR(30) NULL DEFAULT NULL,
   `fechaActividad` DATE NULL DEFAULT NULL,
   `id_usuario` INT NULL DEFAULT NULL,
@@ -147,7 +147,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `ciifen`.`datos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ciifen`.`datos` (
-  `id_datos` INT NOT NULL,
+  `id_datos` INT NOT NULL AUTO_INCREMENT,
   `fecha` DATE NULL DEFAULT NULL,
   `hora` TIME NULL DEFAULT NULL,
   `precipitacion` DOUBLE NULL DEFAULT NULL,
@@ -167,7 +167,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `ciifen`.`persona`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ciifen`.`persona` (
-  `id_persona` INT NOT NULL,
+  `id_persona` INT NOT NULL AUTO_INCREMENT,
   `cedula` CHAR(13) NULL DEFAULT NULL,
   `nombre` CHAR(100) NULL DEFAULT NULL,
   `apellido` CHAR(100) NULL DEFAULT NULL,
@@ -189,7 +189,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `ciifen`.`telefono`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ciifen`.`telefono` (
-  `id_telefono` INT NOT NULL,
+  `id_telefono` INT NOT NULL AUTO_INCREMENT,
   `contacto` INT NULL DEFAULT NULL,
   `telefono` CHAR(10) NULL DEFAULT NULL,
   PRIMARY KEY (`id_telefono`),
@@ -206,7 +206,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `ciifen`.`trazabilidad`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ciifen`.`trazabilidad` (
-  `id_registro` INT NOT NULL,
+  `id_registro` INT NOT NULL AUTO_INCREMENT,
   `valor_anterior` CHAR(100) NULL DEFAULT NULL,
   `usuarioModificado` INT NULL DEFAULT NULL,
   `fechaModificacion` DATE NULL DEFAULT NULL,

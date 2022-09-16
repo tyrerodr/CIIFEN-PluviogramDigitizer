@@ -8,7 +8,7 @@
       <table class="table table-bordered table-hover order-table">
         <thead>
           <tr>
-            <th>ID</th>
+            <th style="display: none">ID</th>
             <th>TÉCNICO/DIGITALIAZDOR</th>
             <th>USUARIO</th>
             <th>EMAIL</th>
@@ -19,7 +19,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of tableData | paginate: { id: 'pager', itemsPerPage: pageSize, currentPage: pageNumber};let index = index" id="{{index}}">
-            <td id="{{index}}.4">{{item.id}}</td>
+            <td id="{{index}}.4" style="display: none">{{item.id}}</td>
             <td id="{{index}}.1">{{item.firstName}}</td>
             <td id="{{index}}.2">{{item.username}}</td>
             <td id="{{index}}.3">{{item.email}}</td>
