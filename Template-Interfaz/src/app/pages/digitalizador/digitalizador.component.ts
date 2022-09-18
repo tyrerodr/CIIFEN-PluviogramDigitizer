@@ -25,7 +25,7 @@ export class DigitalizadorComponent implements OnInit {
     .then(datos => {
     for (let estacion of datos) {
       formEstacion.innerHTML += '<option>'+estacion[0]+'</option>';
-    }})
+    }});
   
     var formpluviograma = document.getElementById("FormModelo");
     fetch('http://127.0.0.1:3000/modeloPluviogramas')
@@ -33,7 +33,7 @@ export class DigitalizadorComponent implements OnInit {
     .then(datos => {
     for (let pluviograma of datos) {
       formpluviograma.innerHTML += '<option>'+pluviograma[0]+'</option>';
-    }})
+    }});
 
     //Formato MES/DIA/AÑO
     // var primera = Date.parse("10/01/2013"); //01 de Octubre del 2013

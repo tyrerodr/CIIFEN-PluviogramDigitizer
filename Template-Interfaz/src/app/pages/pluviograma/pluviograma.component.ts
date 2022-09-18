@@ -15,68 +15,14 @@ export class PluviogramaComponent implements OnInit {
     /* pagination Info */
     pageSize = 10;
     pageNumber = 1;
-    DATA = [
-      {
-          id: 1,
-          hora: '15:00',
-          precipitacion: '1.00'
-      },
-      {
-          id: 2,
-          hora: '15:00',
-          precipitacion: '1.00'
-      },
-      {
-          id: 3,
-          hora: '15:00',
-          precipitacion: '1.00'
-      },
-      {
-          id: 4,
-          hora: '15:00',
-          precipitacion: '1.00'
-      },
-      {
-          id: 5,
-          hora: '15:00',
-          precipitacion: '1.00'
-      },
-      {
-          id: 6,
-          hora: '15:00',
-          precipitacion: '1.00'
-      },
-      {
-          id: 7,
-          hora: '15:00',
-          precipitacion: '1.00'
-      },
-      {
-          id: 8,
-          hora: '15:00',
-          precipitacion: '1.00'
-      },
-      {
-          id: 9,
-          hora: '15:00',
-          precipitacion: '1.00'
-      },
-      {
-          id: 10,
-          hora: '15:00',
-          precipitacion: '1.00'
-      },
-      {
-          id: 11,
-          hora: '15:00',
-          precipitacion: '1.00'
-      },
-      {
-          id: 12,
-          hora: '15:00',
-          precipitacion: '1.00'
-      }
-  ];
+    minutos:{
+      hora: string,
+      precipitacion: string,
+      };
+    DATA: Array<{
+      hora: string,
+      precipitacion: string,
+    }>=[]; 
   
   showloading: boolean = false;
   LineOption;
@@ -98,12 +44,30 @@ export class PluviogramaComponent implements OnInit {
   
   loadData() {
     this.tableData = this.DATA;
+    var pathname = window.location.pathname;
+    var id = pathname.split("/").pop(); 
+    fetch('http://127.0.0.1:3000/pluviogramaSeriedetiempo/' + id)
+    .then(texto => texto.json())
+    .then(datos => {
+    for (let dic of datos["minutes"]) {
+      // console.log(dic['hora'])
+      let p = dic['precipitacion'].toFixed(5)
+      this.minutos={
+        hora: dic['hora'],
+        precipitacion: p.toString() ,
+      };
+      this.DATA.push(this.minutos);
+    }});
+  
   }
   
   pageChanged(pN: number): void {
     this.pageNumber = pN;
   }
    
+
+
+
 
 }
 

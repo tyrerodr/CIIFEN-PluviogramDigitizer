@@ -18,6 +18,12 @@ def crudeDataClean(data):
 
 #def addToTimeSerie(arr,p,t):
 
+# DATA = [{
+	# 	{
+    #       hora: '15:00',
+    #       precipitacion: '1.00'
+    #   },]
+
 def intervalInMinutes(data,interval,arr):
 	if(len(arr)>0):
 		print("Arreglo no vacio")
@@ -28,7 +34,7 @@ def intervalInMinutes(data,interval,arr):
 	for _,_,p,t in data:
 		if ((digitalizacion.timeFormat(t).minute%interval)==0 ) and (lastTime != digitalizacion.timeFormat(t).minute):
 			diffence=p-lastPrecipitation if p-lastPrecipitation>0 else 0
-			arr.append([diffence,t])
+			arr.append({'hora': str(digitalizacion.timeFormat(t)) , 'precipitacion': diffence})
 			lastPrecipitation = p
 			lastTime = digitalizacion.timeFormat(t).minute
 

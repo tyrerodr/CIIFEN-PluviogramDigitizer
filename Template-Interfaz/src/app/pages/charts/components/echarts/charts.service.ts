@@ -5,6 +5,8 @@ export class ChartsService {
     xAxisData = [];
     data1 = [];
     data2 = [];
+    datahora: Array<string> = [];
+    datap: Array<Float32Array> = [];
     constructor() {
         for (var i = 0; i < 100; i++) {
             this.xAxisData.push('Type ' + i);
@@ -41,13 +43,13 @@ export class ChartsService {
     LineOption = {
         xAxis: {
             type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            data: this.datahora
         },
         yAxis: {
             type: 'value'
         },
         series: [{
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            data: this.datap,
             type: 'line',
             smooth: true
         }]
@@ -142,6 +144,20 @@ export class ChartsService {
         return this.BarOption;
     }
     getLineOption() {
+        console.log("entra")
+        var pathname = window.location.pathname;
+        var id = pathname.split("/").pop(); 
+        fetch('http://127.0.0.1:3000/pluviogramaSeriedetiempo/' + id)
+        .then(texto => texto.json())
+        .then(datos => {
+        console.log("entra")
+        for (let dic of datos["data"]) {
+            console.log(dic[1].toFixed(2))
+            console.log(dic[0].toFixed(2))
+            this.datahora.push(dic[1].toFixed(2))
+            this.datap.push(dic[0].toFixed(2))
+        }
+        });
         return this.LineOption;
     }
     getPieOption() {

@@ -178,6 +178,7 @@ def prepareImg(img,model):
 def digitalization(img, model,start, days):
 	info=[]
 	data={}
+	
 	img = prepareImg(img,model)
 	precipitation_rel= calculatePrecipitationRel(model['max_precipitation'], model['min_precipitation'],
 												 img.shape[0])

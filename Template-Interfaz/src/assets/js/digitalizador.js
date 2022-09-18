@@ -22,39 +22,40 @@ $seleccionArchivos.addEventListener("change", () => {
 //escuchar cuando click
 $btnDigitalizar.addEventListener("click", () => {
   
-  fetch('http://127.0.0.1:3000/pluviograma/insert', {
-      method: 'POST', body: JSON.stringify({imagen:document.getElementById("seleccionArchivos").value,
+  // fetch('http://127.0.0.1:3000/pluviograma/insert', {
+  //     method: 'POST', body: JSON.stringify({imagen:document.getElementById("seleccionArchivos").value,
+  //     fecha_inicio:document.getElementById("inicio").value,fecha_fin:document.getElementById("fin").value,
+  //     modelo:document.getElementById("FormModelo").value,link:document.getElementById("seleccionArchivos").value,
+  //     estacion:document.getElementById("FormEstacion").value}),
+  //     headers: {'Content-type': 'application/json; charset=UTF-8'}});
+
+
+    const archivos = $seleccionArchivos.files;
+    const primerArchivo = archivos[0];
+    var data = primerArchivo;
+
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "image/png");
+    
+    var file = primerArchivo;
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: file,
+      redirect: 'follow'
+    };
+
+    fetch('http://127.0.0.1:3000/digitalizar?' + new URLSearchParams({
+      imagen:document.getElementById("seleccionArchivos").value,
       fecha_inicio:document.getElementById("inicio").value,fecha_fin:document.getElementById("fin").value,
       modelo:document.getElementById("FormModelo").value,link:document.getElementById("seleccionArchivos").value,
-      estacion:document.getElementById("FormEstacion").value}),
-      headers: {'Content-type': 'application/json; charset=UTF-8'}});
+      estacion:document.getElementById("FormEstacion").value}), requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
 
-
-  // const archivos = $seleccionArchivos.files;
-  // const primerArchivo = archivos[0];
-  // var data = primerArchivo;
-
-
-  // var myHeaders = new Headers();
-  // myHeaders.append("Content-Type", "image/png");
-  
-  // var file = primerArchivo;
-  // var requestOptions = {
-  //   method: 'POST',
-  //   headers: myHeaders,
-  //   body: file,
-  //   redirect: 'follow'
-  // };
-
-  // fetch('http://127.0.0.1:3000/digitalizar?' + new URLSearchParams({
-  //   inicio: document.getElementById("inicio").value,
-  //   estacion:document.getElementById("FormEstacion").value ,
-  //   modelo:document.getElementById("FormModelo").value,}), requestOptions)
-  //   .then(response => response.text())
-  //   .then(result => console.log(result))
-  //   .catch(error => console.log('error', error));
-
-  window.location.reload();
+  // window.location.reload();
 
 });
 

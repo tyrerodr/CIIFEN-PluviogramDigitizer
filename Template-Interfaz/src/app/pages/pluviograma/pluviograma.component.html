@@ -26,7 +26,7 @@
       </table>
       <form class="pagination-wrapper">
         <div class="form-group pages">
-          <pagination-controls class="my-pagination" id="pager" (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true"
+          <pagination-controls class="my-pagination" id="pager" (pageChange)="pageChanged($event)" maxSize="3" directionLinks="true"
             autoHide="true" previousLabel="Anterior" nextLabel="Siguiente" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
             screenReaderCurrentLabel="You're on page">
           </pagination-controls>
@@ -49,7 +49,7 @@
     </card>
   </div>
   <div class="col-md-7">
-    <card cardTitle='Line Chart'>
+    <card cardTitle='Serie de tiempo'>
       <div echarts [options]="LineOption" [loading]="showloading" theme="dark" class="demo-chart"></div>
     </card>
   </div>
