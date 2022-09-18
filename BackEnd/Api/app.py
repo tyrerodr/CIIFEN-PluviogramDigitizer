@@ -32,7 +32,7 @@ def idpluviograma(estacion, fecha):
     # .join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string))
 
 
-@app.route('/login')
+@app.route('/login')	
 def obtener_usuarios():
     mydb = mysql.connector.connect(
         host="localhost", user="root", passwd="", database="ciifen",auth_plugin='mysql_native_password')

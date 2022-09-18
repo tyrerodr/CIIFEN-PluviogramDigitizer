@@ -33,7 +33,11 @@ export class DigitalizadorComponent implements OnInit {
     .then(datos => {
     for (let pluviograma of datos) {
       formpluviograma.innerHTML += '<option>'+pluviograma[0]+'</option>';
+<<<<<<< HEAD
     }});
+=======
+    }}).catch(error => console.log('error', error));
+>>>>>>> b692b82d2add2b4581c475e94384386e0ea29991
 
     //Formato MES/DIA/AÑO
     // var primera = Date.parse("10/01/2013"); //01 de Octubre del 2013

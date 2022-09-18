@@ -55,7 +55,7 @@ $btnDigitalizar.addEventListener("click", () => {
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
 
-  // window.location.reload();
+  window.location.reload();
 
 });
 
