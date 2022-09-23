@@ -16,7 +16,7 @@ window.addEventListener('load', function() {
         .then(datos => {
             datos = datos[0]
             console.log(datos[0][1])
-            contenedor.innerHTML += '<div class = "row justify-content-md-center title"><h1 class="pb-3">Informacion de la Estación : '+ datos[1]+'</h1></div>' +
+            contenedor.innerHTML += '<div class = "row justify-content-md-center title"><h1 class="pb-3">Información de la Estación : '+ datos[1]+'</h1></div>' +
                 '<div class= "row justify-content-md-center col1"> ' +
                 '<div class="col col-md-auto"> <h5 class="h4 pb-2" >Estación: '+ datos[0]+'</h5></div>' +
                 '<div class="col col-md-auto"> <h5 class="h4 pb-2">Altitud: '+ datos[2]+'</h5></div></div>' +

@@ -8,7 +8,7 @@ window.addEventListener('load', function() {
     .then(datos => {
       console.log(datos)
       for (let pluviogramas of datos) { 
-        contenedor.innerHTML+='<div class = "row justify-content-md-center title"><h1 class="pb-3 pt-2">Informacion del Pluviograma: '+ pluviogramas[0] +'</h1></div>'
+        contenedor.innerHTML+='<div class = "row justify-content-md-center title"><h1 class="pb-3 pt-2">Información del Pluviograma: '+ pluviogramas[0] +'</h1></div>'
           };
 
       })

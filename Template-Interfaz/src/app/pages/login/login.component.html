@@ -6,14 +6,14 @@
       <span class="input-group-addon addon-left" id="username">
         <i class="fa fa-user fa-fw"></i>
       </span>
-      <input #user_name class="form-control with-primary-addon" placeholder="Cuenta de Usuario" type="text">
+      <input id="user" #user_name class="form-control with-primary-addon" placeholder="Cuenta de Usuario" type="text">
     </div>
     <div class="input-group">
       <span class="input-group-addon addon-left" id="password">
         <i class="fa fa-lock fa-fw"></i>
       </span>
-      <input #pass class="form-control with-primary-addon" placeholder="Contraseña" type="password">
+      <input id="pass" #pass class="form-control with-primary-addon" placeholder="Contraseña" type="password">
     </div>
-    <button class="btn btn-default" (click)="onSubmit_Login(user_name.value, pass.value)">Iniciar Sesión</button>
+    <button id="btnInicio" class="btn btn-default" (click)="onSubmit_Login(user_name.value, pass.value)">Iniciar Sesión</button>
   </div>
 </div>

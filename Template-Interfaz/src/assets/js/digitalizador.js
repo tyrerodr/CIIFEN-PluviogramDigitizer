@@ -21,14 +21,6 @@ $seleccionArchivos.addEventListener("change", () => {
 
 //escuchar cuando click
 $btnDigitalizar.addEventListener("click", () => {
-  
-  // fetch('http://127.0.0.1:3000/pluviograma/insert', {
-  //     method: 'POST', body: JSON.stringify({imagen:document.getElementById("seleccionArchivos").value,
-  //     fecha_inicio:document.getElementById("inicio").value,fecha_fin:document.getElementById("fin").value,
-  //     modelo:document.getElementById("FormModelo").value,link:document.getElementById("seleccionArchivos").value,
-  //     estacion:document.getElementById("FormEstacion").value}),
-  //     headers: {'Content-type': 'application/json; charset=UTF-8'}});
-
 
     const archivos = $seleccionArchivos.files;
     const primerArchivo = archivos[0];
@@ -55,7 +47,7 @@ $btnDigitalizar.addEventListener("click", () => {
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
 
-  window.location.reload();
+    window.location.reload();
 
 });
 
