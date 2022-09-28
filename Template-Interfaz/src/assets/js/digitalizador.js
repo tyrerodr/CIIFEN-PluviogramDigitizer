@@ -43,11 +43,36 @@ $btnDigitalizar.addEventListener("click", () => {
       fecha_inicio:document.getElementById("inicio").value,fecha_fin:document.getElementById("fin").value,
       modelo:document.getElementById("FormModelo").value,link:document.getElementById("seleccionArchivos").value,
       estacion:document.getElementById("FormEstacion").value}), requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
+      .then(response => {
+        response.text();
+        if(response.status == 200){
+          swal({
+            title:'Digitalización exitosa!',
+            text:'Tu banda fue digitalizada.',
+            type: 'success',
+            confirmButtonText:'Ok',
+            confirmButtonColor: '#0f436b',
+          });
+        }else{
+          swal({
+            type: 'error',
+            title: 'Oops...',
+            text: 'Ocurrió un error en la digitalización.',
+            confirmButtonText:'Ok',
+            confirmButtonColor: '#0f436b',
+          });
+        }
+      })
+      .catch(error => {console.log('error', error);
+        swal({
+          type: 'error',
+          title: 'Oops...',
+          text: 'Ocurrió un error en la digitalización.',
+          confirmButtonText:'Ok',
+          confirmButtonColor: '#0f436b',
+        });});
 
-    window.location.reload();
+
 
 });
 

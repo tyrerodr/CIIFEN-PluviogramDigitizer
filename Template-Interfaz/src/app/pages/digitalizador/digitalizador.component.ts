@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import swal from 'sweetalert2';
 import { CargarScriptsService } from './../../cargar-scripts.service';
 
 @Component({
@@ -62,6 +63,34 @@ export class DigitalizadorComponent implements OnInit {
     } 
   }
 
+
+  alertConfirm() {
+    swal({
+      title: '¿Está seguro de que quiere digitalizar?',
+      text: 'No podrá revertir los cambios después de digitalizar.',
+      type: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#0f436b',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Digitalizar'
+    }).then((result) => {
+      if (result.value) {
+        this.alertTimer()
+      }
+    });
+  }
+
+  alertTimer() {
+    swal({
+      title: 'Digitalizando la Banda',
+      text: 'Espere hasta que termine la digitalización.',
+      onOpen: () => {
+        swal.showLoading();
+        $("#btn-digitalizador").click();
+      }
+    })
+  }
 
 
 
