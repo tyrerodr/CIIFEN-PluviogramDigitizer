@@ -7,7 +7,7 @@ import { NgxPaginationModule } from 'ngx-pagination'
 
 /*pluviogramaComponent*/ 
 import { PluviogramaComponent } from './pluviograma.component';
-import { NgxEchartsModule } from 'ngx-echarts';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 
 
@@ -19,7 +19,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
         FormsModule,
         ReactiveFormsModule,
         routing,
-        NgxEchartsModule
+        HighchartsChartModule
     ],
     declarations: [
         PluviogramaComponent

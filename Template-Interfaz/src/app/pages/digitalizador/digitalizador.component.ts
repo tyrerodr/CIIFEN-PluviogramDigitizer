@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import swal from 'sweetalert2';
 import { CargarScriptsService } from './../../cargar-scripts.service';
+import * as $ from "jquery";
 
 @Component({
   selector: 'digitalizador',
