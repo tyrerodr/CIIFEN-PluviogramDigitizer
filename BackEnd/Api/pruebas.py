@@ -71,7 +71,7 @@ arr2=[]
 dp.planifier(data,10,arr1,arr2)
 
 for data in arr1:
-	print("precipitación: {} hora:{}".format(data[0],data[1]))
+	print("precipitación: {} hora:{}".format(data['hora'],data['precipitacion']))
 
 print("-----------------------------------")
 

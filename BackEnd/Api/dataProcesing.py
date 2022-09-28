@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import digitalizacion
-from datetime import time,timedelta
+from datetime import time,timedelta,datetime
 from threading import Thread
 #data: List [x,y,precipitation,time in minutes]
 
@@ -32,11 +32,11 @@ def intervalInMinutes(data,interval,arr):
 	lastPrecipitation=0
 	
 	for _,_,p,t in data:
-		if ((digitalizacion.timeFormat(t).minute%interval)==0 ) and (lastTime != digitalizacion.timeFormat(t).minute):
+		if ((t.minute%interval)==0 ) and (lastTime != t.minute):
 			diffence=p-lastPrecipitation if p-lastPrecipitation>0 else 0
-			arr.append({'hora': str(digitalizacion.timeFormat(t)) , 'precipitacion': diffence})
+			arr.append({'hora': str(t) , 'precipitacion': diffence})
 			lastPrecipitation = p
-			lastTime = digitalizacion.timeFormat(t).minute
+			lastTime = t.minute
 
 	#for d in dataInInterval:
 	# print("Precipitation:{}, time:{}".format(round(d[0],2),d[1]))
@@ -51,12 +51,12 @@ def calculateSchedule(data,arr):
 	lastTime=0
 	lastPrecipitation=0
 	for _,_,p,t in data:
-		if ( digitalizacion.timeFormat(t).minute==0 ) and (lastTime != digitalizacion.timeFormat(t).hour):
+		if ( t.minute==0 ) and (lastTime != t.hour):
 			diffence=p-lastPrecipitation if p-lastPrecipitation>0 else 0
 			difference= p - lastPrecipitation
 			arr.append([diffence,t])
 			lastPrecipitation= p
-			lastTime = digitalizacion.timeFormat(t).hour
+			lastTime = t.hour
 	print("por hora Ha finalizado")
 	
 

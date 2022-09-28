@@ -1,8 +1,7 @@
-
 import numpy as np
 from skimage import exposure
 import cv2
-from datetime import time, timedelta
+from datetime import time, timedelta, datetime
 from math import modf
 
 def saveImg(name,img):
@@ -177,7 +176,6 @@ def prepareImg(img,model):
 #Start : first time when the digitalization have to calculate precipitation, it is a station data
 def digitalization(img, model,start, days):
 	info=[]
-	data={}
 	
 	img = prepareImg(img,model)
 	precipitation_rel= calculatePrecipitationRel(model['max_precipitation'], model['min_precipitation'],
@@ -185,9 +183,6 @@ def digitalization(img, model,start, days):
 	time_rel= calculateTimeRel(model['min_time'], model['max_time'] , img.shape[1])
 	rows, columns = img.shape
 	infoDay=start.date()
-	for n in range(days-1):
-		data[infoDay]= 0
-		infoDay = infoDay + timedelta(days= 1)
 	last_precipitation = 0 
 	full_counter=0
 	error_range = 1.5
@@ -199,11 +194,11 @@ def digitalization(img, model,start, days):
 				precipitation = calculatedPrecipitation(y,precipitation_rel,model['max_precipitation']
 														, model['min_precipitation'])
 				time = calculateTime(x,time_rel, model['min_time'])
-				if time<(start.hour*60+start.minute):
-					break
+				#if time<(start.hour*60+start.minute):
+				#	break
 				if not lock and (time >= 24*60):
 					lock= not lock
-					infoDay + timedelta(days=1)
+					infoDay=infoDay + timedelta(days=1)
 				precipitation = precipitation + (10*full_counter)
 				c=isAcceptable(error_range,precipitation,last_precipitation,full_counter,model['max_precipitation'])
 				if(c>=0):
@@ -211,11 +206,12 @@ def digitalization(img, model,start, days):
 						#print(full_counter)
 						full_counter += 1
 						precipitation = precipitation + 10
+					time=timeFormat(time)
+					time=datetime(infoDay.year,infoDay.month,infoDay.day,time.hour,time.minute,time.second)
 					info.append([x,y,precipitation,time])
 					last_precipitation= precipitation 
 					#orgiginal_image = cv2.circle(original_image, (x,y), 1, (0,255,255), 1)	
 					break
-	data[infoDay]= info
 	#showImg(original_image)
 	return info
 
