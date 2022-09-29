@@ -22,14 +22,18 @@
           </select>
       </div>
     </div>
-    <div class="row">
-        <div class="col">
+    <div class="col">
+        <div class="col-md">
             <h4 class="text-left">Vista Previa Pluviograma a Digitalizar:</h4>
-            <img id="imagenPrevisualizacion">
+            <img  id="imagenPrevisualizacion">
         </div>
-      </div>
-    <button form="form-digitalizador" (click)="alertConfirm()"  class="btn-lg btn-default">Digitalizar</button>
+        <div class="col-md">
+          <button form="form-digitalizador" (click)="alertConfirm()"  class="btn-lg btn-default">Digitalizar</button>
     <button style="display: none" type="submit" form="form-digitalizador" id="btn-digitalizador" class="btn-lg btn-default"></button>
+        </div>
+    
+      </div>
+    
 
     </form>
 </card>

@@ -71,9 +71,7 @@ $btnDigitalizar.addEventListener("click", () => {
           confirmButtonText:'Ok',
           confirmButtonColor: '#0f436b',
         });});
-
-
-
+        // document.getElementById("#seleccionArchivos").defaultValue = ""
 });
 
-  
+

@@ -1,10 +1,10 @@
-<div class="container" id="topPluviograma">
+<div class="container " id="topPluviograma">
   
 </div>
 
 
 <div class="row">
-  <div class="col-md-5">
+  <div class="col-md-6">
     <card cardTitle="TABLA DE DATOS EXTRAÍDOS">
       <table class="table table-bordered table-hover">
         <thead>
@@ -48,11 +48,28 @@
       </form>
     </card>
   </div>
-  <div class="col-md-7">
-    <card cardTitle='Serie de tiempo'>
-      <figure class="highcharts-figure">
+  <div class="col-md-6">
+    <card cardTitle='Serie de tiempo Acumulada'>
+      <!-- <figure class="highcharts-figure">
         <div id = "container" style = "width: 550px; height: 400px; margin: 0 auto"></div>
-      </figure>
+      </figure> -->
+      <div class="cardin" ><img class = "grafico " src="{{acumulatedPng}}"> </div>
+    </card>
+  </div>
+  <div class="col-md">
+    <card cardTitle='Serie de tiempo Precipitación'>
+      <!-- <figure class="highcharts-figure">
+        <div id = "container" style = "width: 550px; height: 400px; margin: 0 auto"></div>
+      </figure> -->
+      <div class="cardin" ><img class = "grafico" src="{{plotPng}}"> </div>
+    </card>
+  </div>
+  <div class="col-md">
+    <card cardTitle='Banda Pluviografica'>
+      <!-- <figure class="highcharts-figure">
+        <div id = "container" style = "width: 550px; height: 400px; margin: 0 auto"></div>
+      </figure> -->
+      <div class="cardin"><img class="banda"src="{{bandPng}}"> </div>
     </card>
   </div>
 </div>
