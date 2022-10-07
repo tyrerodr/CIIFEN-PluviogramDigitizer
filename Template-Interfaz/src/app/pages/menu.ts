@@ -13,12 +13,11 @@ function getCookie(cname: String) {
     return "";
   } 
 
-console.log(getCookie("tipo") + "SISI");
 export let MENU_ITEM;
-if(getCookie("tipo") == "administrador"){
+if(getCookie("type") == "administrador"){
     MENU_ITEM = [
         {
-            path: 'digitalizador',
+            path: 'digitizer',
             title: 'Digitalizador',
             icon: 'pencil'
         },
@@ -33,19 +32,19 @@ if(getCookie("tipo") == "administrador"){
             icon: 'user'
         },
     ];
-}else if(getCookie("tipo") == "digitalizador"){
+}else if(getCookie("type") == "digitalizador"){
     MENU_ITEM = [
         {
-            path: 'digitalizador',
+            path: 'digitizer',
             title: 'Digitalizador',
             icon: 'pencil'
         },
         
     ];
-}else if(getCookie("tipo") == "técnico"){
+}else if(getCookie("type") == "técnico"){
     MENU_ITEM = [
         {
-            path: 'digitalizador',
+            path: 'digitizer',
             title: 'Digitalizador',
             icon: 'pencil'
         },

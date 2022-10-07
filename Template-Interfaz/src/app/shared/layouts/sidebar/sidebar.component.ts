@@ -62,11 +62,11 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.sidebarToggle = window.innerWidth >= 970;
-    console.log(window.innerWidth);
+    // console.log(window.innerWidth);
   }
 
   ngAfterViewInit(): void {
     this.sidebarToggle = window.innerWidth >= 970;
-    console.log(window.innerWidth);
+    // console.log(window.innerWidth);
   }
 }

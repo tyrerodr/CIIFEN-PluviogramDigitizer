@@ -1,8 +1,7 @@
-
 import numpy as np
 from skimage import exposure
 import cv2
-from datetime import time, timedelta
+from datetime import time, timedelta, datetime
 from math import modf
 
 def saveImg(name,img):
@@ -40,12 +39,13 @@ def resize(img,scale):
 	dim = (width, height)
 	return cv2.resize(img,dim)
 
-def imageWithoutRedGrids(img):
-	limInferior=np.array([90,40,30],np.uint8)
-	limSuperior=np.array([150,255,220],np.uint8)
+def imageWithoutGrids(img):
+	limInferior=np.array([90,40,20],np.uint8)
+	limSuperior=np.array([150,255,250],np.uint8)
 	imgarray= np.array(img)
 	img=identify_pluviogram_by_color(imgarray,limInferior,limSuperior)
 	return img
+
 
 #----------------
 #cv2.imshow("pluviograma",img)
@@ -168,26 +168,22 @@ def timeFormat(minutes: int)-> time:
 	hours = hours-24 if hours >= 24 else hours 
 	return time(hours, minutes, seconds)
 
-def prepareImg(img,model):
+def prepareImg(img):
 	img= limitImage(img)
 	img = resize(img,100)
-	img = imageWithoutRedGrids(img)
+	img = imageWithoutGrids(img)
 	img = binarization(img,200)
 	return img
 #Start : first time when the digitalization have to calculate precipitation, it is a station data
 def digitalization(img, model,start, days):
 	info=[]
-	data={}
 	
-	img = prepareImg(img,model)
+	img = prepareImg(img)
 	precipitation_rel= calculatePrecipitationRel(model['max_precipitation'], model['min_precipitation'],
 												 img.shape[0])
 	time_rel= calculateTimeRel(model['min_time'], model['max_time'] , img.shape[1])
 	rows, columns = img.shape
 	infoDay=start.date()
-	for n in range(days-1):
-		data[infoDay]= 0
-		infoDay = infoDay + timedelta(days= 1)
 	last_precipitation = 0 
 	full_counter=0
 	error_range = 1.5
@@ -199,11 +195,11 @@ def digitalization(img, model,start, days):
 				precipitation = calculatedPrecipitation(y,precipitation_rel,model['max_precipitation']
 														, model['min_precipitation'])
 				time = calculateTime(x,time_rel, model['min_time'])
-				if time<(start.hour*60+start.minute):
-					break
+				#if time<(start.hour*60+start.minute):
+				#	break
 				if not lock and (time >= 24*60):
 					lock= not lock
-					infoDay + timedelta(days=1)
+					infoDay=infoDay + timedelta(days=1)
 				precipitation = precipitation + (10*full_counter)
 				c=isAcceptable(error_range,precipitation,last_precipitation,full_counter,model['max_precipitation'])
 				if(c>=0):
@@ -211,11 +207,12 @@ def digitalization(img, model,start, days):
 						#print(full_counter)
 						full_counter += 1
 						precipitation = precipitation + 10
-					info.append([x,y,precipitation,time])
+					#time=timeFormat(time)
+					#time=datetime(infoDay.year,infoDay.month,infoDay.day,time.hour,time.minute,time.second)
+					info.append([precipitation,time])
 					last_precipitation= precipitation 
 					#orgiginal_image = cv2.circle(original_image, (x,y), 1, (0,255,255), 1)	
 					break
-	data[infoDay]= info
 	#showImg(original_image)
 	return info
 
@@ -241,7 +238,7 @@ def limitImage(img):
 
 def changeRange(arr):
 	withoutIncrement=[]
-	for _,_,p,t in arr:
+	for p,t in arr:
 		withoutIncrement.append([p - (p//10)*10,t])
 	return withoutIncrement
 #precipitation_rel = calculatePrecipitationRel(max_precipitation,min_precipitation,img.shape[0])

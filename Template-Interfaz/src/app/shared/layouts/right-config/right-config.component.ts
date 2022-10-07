@@ -16,7 +16,7 @@ export class RightConfigComponent implements OnInit {
 
   ngOnInit() { 
     document.getElementById('textouser')!.textContent = this.getCookie("username");
-    document.getElementById('textotipo')!.textContent = 'Permisos de '+this.getCookie("tipo");
+    document.getElementById('textotipo')!.textContent = 'Permisos de '+this.getCookie("type");
     this.asignarLogout();
   }
 
@@ -28,10 +28,9 @@ export class RightConfigComponent implements OnInit {
 
   asignarLogout(){
     document.getElementById('logout')!.addEventListener('click', function () {
-
       document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:01 UTC;"+"path=/";
-      document.cookie = "tipo=; expires=Thu, 01 Jan 1970 00:00:01 UTC;"+"path=/";
-      document.cookie = "identificador=; expires=Thu, 01 Jan 1970 00:00:01 UTC;"+"path=/";  
+      document.cookie = "type=; expires=Thu, 01 Jan 1970 00:00:01 UTC;"+"path=/";
+      document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:01 UTC;"+"path=/";  
       location.reload();
       window.location.href = 'http://localhost:4200/login';
     });

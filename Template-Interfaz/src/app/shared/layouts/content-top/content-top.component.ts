@@ -31,7 +31,6 @@ export class ContentTopComponent implements OnInit {
 
     
     this._globalService.data$.subscribe(data => {
-      console.log("entra")
       if (data.ev === 'isActived') {
         this.routeTitle = data.value.title;}
       // }else if(document.getElementById("tituloLink") != null){

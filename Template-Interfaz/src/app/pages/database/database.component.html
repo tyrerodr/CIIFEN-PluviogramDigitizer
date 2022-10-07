@@ -16,12 +16,12 @@
           <tbody>
             <tr *ngFor="let item of tableData | paginate: { id: 'pager', itemsPerPage: pageSize, currentPage: pageNumber};let index = index">
               <td>{{item.id}}</td>
-              <td>{{item.nombre}}</td>
-              <td>{{item.altitud}}</td>
-              <td>{{item.latitud}}</td>
-              <td>{{item.longitud}}</td>
+              <td>{{item.name}}</td>
+              <td>{{item.altitude}}</td>
+              <td>{{item.latitude}}</td>
+              <td>{{item.longitude}}</td>
               <td>
-                <button role="link" id="{{item.id}}" onclick="buscarxEstacion(this)" class="btn-lg btn-default">ver</button>
+                <button role="link" id="{{item.id}}" onclick="searchxStation(this)" class="btn-lg btn-default">ver</button>
               </td>
             </tr>
           </tbody>

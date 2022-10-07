@@ -1,3 +1,4 @@
+from ast import parse
 from pickle import DEFAULT_PROTOCOL
 import digitalizacion
 from flask_mysqldb import MySQL
@@ -14,6 +15,7 @@ import string
 import random
 import dataProcesing as dp
 import numpy as np
+import matplotlib.pyplot as plt
 
 PLU_PATH = "pluviograma"
 app = Flask(__name__)
@@ -25,15 +27,15 @@ CORS(app)
 # mysql = MySQL(app)
 
 
-def idpluviograma(estacion, fecha):
+def idpluviograma(station, fecha):
     # length_of_string = 8
     año, mes, dia = fecha.split("-")
-    return 'PUVLI' + estacion + año[2:] + mes + dia
+    return 'PUVLI' + station + año[2:] + mes + dia
     # .join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string))
 
 
 @app.route('/login')	
-def obtener_usuarios():
+def get_login():
     mydb = mysql.connector.connect(
         host="localhost", user="root", passwd="", database="ciifen",auth_plugin='mysql_native_password')
     cur = mydb.cursor()
@@ -49,7 +51,7 @@ def timeDeltaToTime(td):
 
 
 @app.route('/users')
-def obtener_users():
+def get_users():
     mydb = mysql.connector.connect(
         host="localhost", user="root", passwd="", database="ciifen", auth_plugin='mysql_native_password')
 
@@ -61,8 +63,8 @@ def obtener_users():
     return response
 
 
-@app.route('/estacion/<id>')
-def obtener_estacion(id):
+@app.route('/station/<id>')
+def get_station(id):
     mydb = mysql.connector.connect(
         host="localhost", user="root", passwd="", database="ciifen", auth_plugin='mysql_native_password')
     cur = mydb.cursor()
@@ -73,8 +75,8 @@ def obtener_estacion(id):
     return response
 
 
-@app.route('/estacion/pluviograma/<id>')
-def obtener_pluviograma(id):
+@app.route('/station/pluviogram/<id>')
+def get_pluviograma(id):
     mydb = mysql.connector.connect(
         host="localhost", user="root", passwd="", database="ciifen", auth_plugin='mysql_native_password')
     cur = mydb.cursor()
@@ -85,8 +87,8 @@ def obtener_pluviograma(id):
     return response
 
 
-@app.route('/pluviograma/<id>')
-def obtener_pluviogramaId(id):
+@app.route('/pluviogram/<id>')
+def get_pluviogramaId(id):
     mydb = mysql.connector.connect(
         host="localhost", user="root", passwd="", database="ciifen", auth_plugin='mysql_native_password')
     cur = mydb.cursor()
@@ -102,8 +104,8 @@ def timeDeltaToTime(td):
     return time(td.seconds//3600, (td.seconds//60) % 60, 00)
 
 
-@app.route('/estacion')
-def obtener_estaciones():
+@app.route('/stations')
+def get_stations():
     mydb = mysql.connector.connect(
         host="localhost", user="root", passwd="", database="ciifen", auth_plugin='mysql_native_password')
     cur = mydb.cursor()
@@ -114,8 +116,8 @@ def obtener_estaciones():
     return response
 
 
-@app.route('/modeloPluviogramas')
-def obtener_pluviogramasModelo():
+@app.route('/modelPluviograms')
+def get_pluviogramasModelo():
     mydb = mysql.connector.connect(
         host="localhost", user="root", passwd="", database="ciifen", auth_plugin='mysql_native_password')
     cur = mydb.cursor()
@@ -126,22 +128,22 @@ def obtener_pluviogramasModelo():
     return response
 
 
-@app.route('/pluviograma/insert', methods=['POST', 'GET'])
-def añadirPluviograma():
+@app.route('/pluviogram/insert', methods=['POST', 'GET'])
+def savePluviograma():
     data = {'message': 'Done', 'code': 'SUCCESS'}
     if request.method == 'POST':
         mydb = mysql.connector.connect(
             host="localhost", user="root", passwd="", database="ciifen", auth_plugin='mysql_native_password')
         cur = mydb.cursor()
         info = request.get_json()
-        imagen = info['imagen']
+        image = info['image']
         link = info['link']
-        fecha_fin = info['fecha_inicio']
-        fecha_inicio = info['fecha_fin']
-        estacion = info['estacion']
-        modelo = info['modelo']
-        cur.execute('INSERT INTO ciifen.pluviograma values(\"'+idpluviograma(estacion, fecha_inicio)+'\",DEFAULT,\' ' + fecha_inicio +
-                    '\',\' ' + fecha_fin+' \',curdate(),\"'+modelo+'\",\"'+link+'\",1,\"' + estacion+'\",1);')
+        startDate = info['endDate']
+        endDate = info['startDate']
+        station = info['station']
+        model = info['modelo']
+        cur.execute('INSERT INTO ciifen.pluviograma values(\"'+idpluviograma(station, endDate)+'\",DEFAULT,\' ' + endDate +
+                    '\',\' ' + startDate+' \',curdate(),\"'+model+'\",\"'+link+'\",1,\"' + station+'\",1);')
         mydb.commit()
     mydb.close()
     return make_response(data, 201)
@@ -157,31 +159,31 @@ def update(id):
         info = request.get_json()
         '''id =request.args['id']'''
         idviejo = info['idviejo']
-        nombre = info['nombre']
-        print(nombre)
+        name = info['name']
+        print(name)
         email = info['email']
-        usuario = info['usuario']
-        estado = info['estado']
-        if estado == "activo":
-            estado = '1'
+        user = info['user']
+        status = info['status']
+        if status == "activo":
+            status = '1'
         else:
-            estado = '0'
-        tipo = info['tipo']
+            status = '0'
+        tipo = info['type']
         print(idviejo)
-        if (info['contraseña'] != "*********"):
-            contraseña = info['contraseña']
-            cur.execute('UPDATE ciifen.usuario SET id_usuario=\"'+id+'\",nombre=\"' + nombre+'\",correo=\"'+email+'\",usuario=\"'+usuario +
-                        '\",contraseña=md5(\"'+contraseña+'\"),estado=\"'+estado+'\",tipo_usuario=\"'+tipo+'\" where id_usuario='+idviejo)
+        if (info['password'] != "*********"):
+            contraseña = info['password']
+            cur.execute('UPDATE ciifen.usuario SET id_usuario=\"'+id+'\",nombre=\"' + name+'\",correo=\"'+email+'\",usuario=\"'+user +
+                        '\",contraseña=md5(\"'+contraseña+'\"),estado=\"'+status+'\",tipo_usuario=\"'+tipo+'\" where id_usuario='+idviejo)
         else:
-            cur.execute('UPDATE ciifen.usuario SET id_usuario=\"'+id+'\",nombre=\"' + nombre+'\",correo=\"'+email+'\",usuario=\"'+usuario +
-                    '\",estado=\"'+estado+'\",tipo_usuario=\"'+tipo+'\" where id_usuario='+idviejo)
+            cur.execute('UPDATE ciifen.usuario SET id_usuario=\"'+id+'\",nombre=\"' + name+'\",correo=\"'+email+'\",usuario=\"'+user +
+                    '\",estado=\"'+status+'\",tipo_usuario=\"'+tipo+'\" where id_usuario='+idviejo)
 
         mydb.commit()
     mydb.close()
     return make_response(data, 201)
 
 
-@app.route('/users/eliminar', methods=['POST', 'GET'])
+@app.route('/users/delete', methods=['POST', 'GET'])
 def eliminar():
     mydb = mysql.connector.connect(
         host="localhost", user="root", passwd="", database="ciifen", auth_plugin='mysql_native_password')
@@ -197,33 +199,33 @@ def eliminar():
     return make_response(data, 201)
 
 
-@app.route('/users/añadir', methods=['POST', 'GET'])
-def añadir():
+@app.route('/users/add', methods=['POST', 'GET'])
+def add():
     mydb = mysql.connector.connect(
         host="localhost", user="root", passwd="", database="ciifen", auth_plugin='mysql_native_password')
     data = {'message': 'Done', 'code': 'SUCCESS'}
     if request.method == 'POST':
         cur = mydb.cursor()
         info = request.get_json()
-        nombre = info['nombre']
+        name = info['name']
         email = info['email']
-        usuario = info['usuario']
-        contraseña = info['contraseña']
-        estado = info['estado']
-        if estado == "activo":
-            estado = '1'
+        user = info['user']
+        password = info['password']
+        status = info['status']
+        if status == "activo":
+            status = '1'
         else:
-            estado = '0'
+            status = '0'
 
-        tipo = info['tipo']
+        tipo = info['type']
         cur.execute('INSERT INTO ciifen.usuario (usuario,correo,contraseña,nombre,tipo_usuario,estado) VALUES (\"' +
-                    usuario+'\",\"'+email+'\",md5(\"'+contraseña+'\"),\"'+nombre+'\",\"'+tipo+'\",\"'+estado+'\");')
+                    user+'\",\"'+email+'\",md5(\"'+password+'\"),\"'+name+'\",\"'+tipo+'\",\"'+status+'\");')
         mydb.commit()
     mydb.close()
     return make_response(data, 201)
 
 
-@app.route('/digitalizar', methods=['POST', 'GET'])
+@app.route('/digitize', methods=['POST', 'GET'])
 def save_band():
     mydb = mysql.connector.connect(
         host="localhost", user="root", passwd="", database="ciifen", auth_plugin='mysql_native_password')
@@ -231,14 +233,14 @@ def save_band():
             print("Procesando request")
             img = request.get_data()
             # info= request.get_json()
-            # name= info['nombre']
+            # name= info['name']
             # name=request.args['name']
             name = idpluviograma(
-                request.args['estacion'], request.args['fecha_inicio'])
+                request.args['station'], request.args['endDate'])
             
             print(name)
             # model_id= info['modelo']
-            model_name = request.args['modelo']
+            model_name = request.args['model']
             try:
                 parent = os.getcwd()
                 path = os.path.join(parent+"/{}".format(PLU_PATH), name)
@@ -270,18 +272,22 @@ def save_band():
                 path = '{}/{}/data.json'.format(PLU_PATH, name)
                 with open(path, 'w') as f:
                     json.dump({'data': digitalizacion.changeRange(data),
-                            'dataAcumulated': data, 'minutes': dataInInterval, 'hours': dataInSchedule}, f)
+                            'dataAcumulated': data, 'minutes': dataInInterval, 'hours': dataInSchedule}, f, default=str)
+
+                dp.savePlot(data,'{}/{}/acumulatedPlot.png'.format(PLU_PATH,name))
+                dp.savePlot(digitalizacion.changeRange(data),'{}/{}/plot.png'.format(PLU_PATH,name))
+
                 info = request.args
-                imagen = info['imagen']
+                image = info['image']
                 link = info['link']
-                fecha_fin = info['fecha_inicio']
-                fecha_inicio = info['fecha_fin']
-                estacion = info['estacion']
-                modelo = info['modelo']
+                startDate = info['startDate']
+                endDate = info['endDate']
+                station = info['station']
+                modelo = info['model']
                 query= 'INSERT INTO pluviograma values(%s,DEFAULT,%s,%s,curdate(),%s,%s,%s,%s)'
-                values = (name,fecha_inicio,fecha_fin,modelo,link,1,estacion)
-                # cur.execute('INSERT INTO pluviograma values(\"'+idpluviograma(estacion, fecha_inicio)+'\",DEFAULT,\' ' + fecha_inicio +
-                #             '\',\' ' + fecha_fin+' \',curdate(),\"'+modelo+'\",\"'+link+'\",1,\"' + estacion+'\");')
+                values = (name,endDate,startDate,modelo,link,1,station)
+                # cur.execute('INSERT INTO pluviograma values(\"'+idpluviograma(station, endDate)+'\",DEFAULT,\' ' + endDate +
+                #             '\',\' ' + startDate+' \',curdate(),\"'+modelo+'\",\"'+link+'\",1,\"' + station+'\");')
                 cur.execute(query,values)
                 
                 mydb.commit()

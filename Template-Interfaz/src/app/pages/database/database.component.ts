@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SelectComponent } from 'ng2-select';
-import { CargarScriptsService } from './../../cargar-scripts.service';
+import { UploadScriptsService } from '../../upload-scripts.service';
 
 @Component({
   selector: 'app-database',
@@ -13,28 +12,28 @@ export class DatabaseComponent implements OnInit {
   /* pagination Info */
   pageSize = 10;
   pageNumber = 1;
-  x:{
+  station:{
     id: number,
-    nombre: string,
-    altitud: string,
-    latitud: string,
-    longitud: string,
-    usuariocreador: string,
-    estado: string
+    name: string,
+    altitude: string,
+    latitude: string,
+    longitude: string,
+    createUser: string,
+    status: string
     };
 
     DATA: Array<{
         id: number,
-        nombre: string,
-        altitud: string,
-        latitud: string,
-        longitud: string,
-        usuariocreador: string,
-        estado: string
+        name: string,
+        altitude: string,
+        latitude: string,
+        longitude: string,
+        createUser: string,
+        status: string
     }>=[]; 
-  constructor(private _CargarScripts:CargarScriptsService, private router: Router) 
+  constructor(private _UploadScripts:UploadScriptsService, private router: Router) 
   {
-    _CargarScripts.Carga(["tablas","buscar"]);
+    _UploadScripts.upload(["tables","search"]);
   }  
 
   
@@ -43,21 +42,20 @@ export class DatabaseComponent implements OnInit {
   }
   
   loadData() {
-     
-    fetch('http://127.0.0.1:3000/estacion')
-  .then(texto => texto.json())
-  .then(datos => {
-      for (let estacion of datos) {
-          this.x={
-            id: estacion[0],
-            nombre: estacion[1],
-            altitud: estacion[2],
-            latitud: estacion[3],
-            longitud: estacion[4],
-            usuariocreador: estacion[5],
-            estado: estacion[6]
+    fetch('http://127.0.0.1:3000/stations')
+  .then(text => text.json())
+  .then(data => {
+      for (let station of data) {
+          this.station={
+            id: station[0],
+            name: station[1],
+            altitude: station[2],
+            latitude: station[3],
+            longitude: station[4],
+            createUser: station[5],
+            status: station[6]
           };
-          this.DATA.push(this.x);
+          this.DATA.push(this.station);
       }
   
       
@@ -70,7 +68,6 @@ export class DatabaseComponent implements OnInit {
 
   navegate(){
     window.location.href = 'http://localhost:4200/pages/database/station';
-    console.log("Entra")
   }
 }
 

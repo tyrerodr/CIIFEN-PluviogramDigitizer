@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CargarScriptsService } from '../../cargar-scripts.service';
+import { UploadScriptsService } from '../../upload-scripts.service';
 
 @Component({
   selector: 'app-station',
@@ -11,22 +11,22 @@ export class StationComponent implements OnInit {
     /* pagination Info */
     pageSize = 10;
     pageNumber = 1;
-    pluviograma:{
+    pluviogram:{
         id: string,
-        fecha_digitalizacion: string,
-        modelo: string,
+        dateDigitizing: string,
+        model: string,
         };
     
         DATA: Array<{
           id: string,
-          fecha_digitalizacion: string,
-          modelo: string,
+          dateDigitizing: string,
+          model: string,
         }>=[]; 
 
 
-  constructor(private _CargarScripts:CargarScriptsService) 
+  constructor(private _UploadScripts:UploadScriptsService) 
   {
-    _CargarScripts.Carga(["tablas","buscar"]);
+    _UploadScripts.upload(["tables","search"]);
   }  
   
   ngOnInit() {
@@ -36,19 +36,16 @@ export class StationComponent implements OnInit {
   loadData() {
     var pathname = window.location.pathname;
     var id = pathname.split("/").pop(); 
-    console.log("Pluvio"+id)
-    fetch('http://127.0.0.1:3000//estacion/pluviograma/' + id)
+    fetch('http://127.0.0.1:3000//station/pluviogram/' + id)
     .then(texto => texto.json())
     .then(datos => {
-      console.log(datos)
-      for (let pluviogramas of datos) {
-        console.log("Pluvio"+pluviogramas[4])
-          this.pluviograma={
-            id: pluviogramas[0],
-            fecha_digitalizacion: pluviogramas[4],
-            modelo: pluviogramas[5],
+      for (let onePluviogram of datos) {
+          this.pluviogram={
+            id: onePluviogram[0],
+            dateDigitizing: onePluviogram[4],
+            model: onePluviogram[5],
           };
-          this.DATA.push(this.pluviograma);
+          this.DATA.push(this.pluviogram);
       }
   
       
@@ -60,6 +57,5 @@ export class StationComponent implements OnInit {
   }
   navegate(){
     window.location.href = 'http://localhost:4200/pages/database/station';
-    console.log("Entra")
   }
 }

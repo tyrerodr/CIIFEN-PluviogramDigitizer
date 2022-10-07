@@ -6,11 +6,13 @@ import { routing } from './app.routing';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { CargarScriptsService } from './cargar-scripts.service';
-import { AdminGuardService } from './pages/seguridad/admin.guard.service';
+import { UploadScriptsService } from './upload-scripts.service';
+import { AdminGuardService } from './pages/security/admin.guard.service';
 import { loginService } from './pages/login/login.service';
-import { loginGuardService } from './pages/seguridad/login.guard.service';
-import { DigitalizadorGuardService } from './pages/seguridad/digitalizador.guard.service';
+import { loginGuardService } from './pages/security/login.guard.service';
+import { DigitizerComponent } from './pages/digitizer/digitizer.component';
+import { DigitizerGuardService } from './pages/security/digitizer.guard.service';
+
 
 @NgModule({
   imports: [
@@ -24,7 +26,7 @@ import { DigitalizadorGuardService } from './pages/seguridad/digitalizador.guard
     AppComponent,
   ],
   providers: [
-    CargarScriptsService,AdminGuardService,loginService,loginGuardService,DigitalizadorGuardService
+    UploadScriptsService,AdminGuardService,loginService,loginGuardService,DigitizerGuardService
   ],
   bootstrap: [AppComponent]
 })

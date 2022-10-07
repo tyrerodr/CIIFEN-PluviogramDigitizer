@@ -1,5 +1,4 @@
 import { Routes, RouterModule } from '@angular/router';
-import { PagesComponent } from './pages/pages.component';
 
 const appRoutes: Routes = [
   {

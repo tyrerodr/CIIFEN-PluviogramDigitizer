@@ -5,10 +5,10 @@ export class loginService {
 
   constructor() { }
 
-  Carga(archivos:String[]){
-    for(let archivo of archivos){
+  upload(files:String[]){
+    for(let file of files){
       let script = document.createElement("script");
-      script.src = "./assets/js/" + archivo + ".js";
+      script.src = "./assets/js/" + file + ".js";
       let body = document.getElementsByTagName("body")[0];
       body.appendChild(script);
     }
@@ -28,36 +28,36 @@ export class loginService {
     return "";
   } 
 
-  UsuarioLogin(){
-    if (this.getCookie("tipo")==""){
+  loginUser(){
+    if (this.getCookie("type")==""){
       return false
     }
       return true
   }
 
-  UsuarioDigitalizador(){
-    if (this.getCookie("tipo")==""){
+  digitizerUser(){
+    if (this.getCookie("type")==""){
       return false
     }
-    else if (this.getCookie("tipo")=="digitalizador"){
+    else if (this.getCookie("type")=="digitalizador"){
       return true
     }
   }
 
-  UsuarioAdministrador(){
-    if (this.getCookie("tipo")==""){
+  adminUser(){
+    if (this.getCookie("type")==""){
       return false
     }
-    else if (this.getCookie("tipo")=="administrador"){
+    else if (this.getCookie("type")=="administrador"){
       return true
     }
   }
 
-  UsuarioTecnico(){
-    if (this.getCookie("tipo")==""){
+  technicalUser(){
+    if (this.getCookie("type")==""){
       return false
     }
-    else if (this.getCookie("tipo")=="técnico"){
+    else if (this.getCookie("type")=="técnico"){
       return true
     }
   }
