@@ -158,7 +158,7 @@ def update(id):
         cur = mydb.cursor()
         info = request.get_json()
         '''id =request.args['id']'''
-        idviejo = info['idviejo']
+        idviejo = info['lastID']
         name = info['name']
         print(name)
         email = info['email']

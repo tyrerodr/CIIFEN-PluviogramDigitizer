@@ -146,7 +146,7 @@ function add(){
 
     fetch('http://127.0.0.1:3000/users/add', {
       method: 'POST', body: JSON.stringify({name:modifyName,email:modifyEmail,user:modifyUser,
-        password:modifyPassword,status:modifyStatus,type:modifyType}),
+        password:modifyPassword,status:modifyStatus,type:modifyTypeificar}),
       headers: {'Content-type': 'application/json; charset=UTF-8'}}).then(function (response) {
         if (response.ok) { 
           window.location.reload();
