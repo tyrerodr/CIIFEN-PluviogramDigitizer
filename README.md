@@ -1,1 +1,2 @@
-# CIIFEN-PAGINAWEB
+# CIIFEN-Pluviogram Digitizer project
+Bienvenido al proyecto Pluviogram Digitizer, una potente herramienta diseñada para transformar sin esfuerzo imágenes escaneadas de tiras de precipitaciones en papel en completos conjuntos de datos digitales. Con una interfaz fluida construida mediante Angular y backend mediante SQL, este proyecto aporta eficiencia, precisión y accesibilidad al análisis de datos pluviométricos.
