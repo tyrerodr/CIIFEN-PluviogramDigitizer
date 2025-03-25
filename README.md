@@ -31,14 +31,13 @@ Through this act, **CIIFEN** approves the work and participation of the **“Whi
 
 ## Contributors
 
-- **Group “White Hats”**  
-    Software Engineering II Students, FIEC, **Escuela Superior Politécnica del Litoral**.
+- **Team “White Hats”**  
+    Software Engineering II Students, Faculty of Electrical and Computing Engineering (FIEC) , **Escuela Superior Politécnica del Litoral**.
   
 - **Team Lead “White Hats”**  
-    Eng. Tyrone Eduardo Rodriguez Motato
-    Faculty of Electrical and Computing Engineering (FIEC)
-    Escuela Superior Politécnica del Litoral - ESPOL
-    Guayaquil, Ecuador
+    Tyrone Eduardo Rodriguez Motato, 
+    Escuela Superior Politécnica del Litoral - ESPOL,
+    Guayaquil, Ecuador,
     tyrerodr@espol.edu.ec
 
 - **Product Owner**:  
